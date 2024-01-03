@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4d33b14d10dc043ae83db5dbc3073a, type: 3}
+  m_Name: BarrackData
+  m_EditorClassIdentifier: 
+  Name: Barrack
+  Type: 0
+  IsProductive: 1
+  Icon: {fileID: 21300000, guid: 3f497339bb80b8c4b8186294cf4a855a, type: 3}
+  HealthPoint: 100
+  Prefab: {fileID: 7295319812076323635, guid: 346c987d530e52548b8288d250f794b5, type: 3}
+  InfoString: "The primary function of the Barracks is to facilitate the production
+    of military units. It acts as a training ground where soldiers are recruited,
+    equipped, and prepared for deployment in your strategic endeavors.\n\nDefense:
+    100 health points.\r"
