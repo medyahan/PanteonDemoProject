@@ -40,13 +40,12 @@ namespace MilitaryGame
 
         public override void End()
         {
+            MilitaryGameEventLib.Instance.OnDestroy();
+            
             base.End();
         
             _productMenuController.End();
             _informationPanelController.End();
-        
-            SoldierFactory.Instance.End();
-            BuildingFactory.Instance.End();
         }
     }
 }

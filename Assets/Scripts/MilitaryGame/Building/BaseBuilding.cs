@@ -13,7 +13,7 @@ namespace MilitaryGame.Building
 
         [Header("HEALTH BAR")] 
         [SerializeField] protected HealthBar _healthBar;
-        
+
         public bool Placed { get; protected set; }
         public BoundsInt Area
         {
@@ -54,7 +54,7 @@ namespace MilitaryGame.Building
         {
             if(!Placed) return;
             
-            MilitaryGameEventLib.Instance.ShowBuildingInfo(this);
+            MilitaryGameEventLib.Instance.ShowBuildingInfo?.Invoke(this);
         }
         
         public void OnRightClick() { }

@@ -14,7 +14,7 @@ namespace MilitaryGame
             base.Awake();
         }
 
-        private void OnDestroy()
+        public void OnDestroy()
         {
             ShowBuildingInfo = null;
             CloseInformationPanel = null;
