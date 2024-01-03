@@ -1,15 +1,20 @@
 using Core;
 using UnityEngine;
 
-namespace MilitaryGame.Building
+namespace MilitaryGame.Buildings
 {
-    public class BaseBuilding : BaseMonoBehaviour, ILeftClickable
+    public class Building : BaseMonoBehaviour, ILeftClickable
     {
         [SerializeField] private protected BuildingData _buildingData;
         [SerializeField] private BoundsInt _area;
 
-        public bool Placed { get; private set; }
-        public BoundsInt Area => _area;
+        public bool Placed { get; private set; }//
+        public BoundsInt Area//
+        {
+            get => _area;
+            set => _area = value;
+        }
+
         public BuildingData BuildingData => _buildingData;
 
         public override void Initialize(params object[] list)
@@ -22,37 +27,35 @@ namespace MilitaryGame.Building
         public void OnLeftClick()
         {
             if(!Placed) return;
-        
+            
             MilitaryGameEventLib.Instance.ShowBuildingInfo(this);
         }
 
         #region BUILD PLACEMENT METHODS
-
+        
         public bool CanBePlaced()
         {
-            //if (Placed) return false;
-            
-            Vector3Int positionInt = GridBuildingSystem.Current.GridLayout.LocalToCell(transform.position);
+            Vector3Int positionInt = GridBuildingSystem.GridBuildingSystem.Current.GridLayout.LocalToCell(transform.position);
             BoundsInt areaTemp = _area;
             areaTemp.position = positionInt;
         
-            if (GridBuildingSystem.Current.CanTakeArea(areaTemp))
+            if (GridBuildingSystem.GridBuildingSystem.Current.CanTakeArea(areaTemp))
             {
                 return true;
             }
-
+            
             return false;
         }
-
+        
         public void Place()
         {
-            Vector3Int positionInt = GridBuildingSystem.Current.GridLayout.LocalToCell(transform.position);
+            Vector3Int positionInt = GridBuildingSystem.GridBuildingSystem.Current.GridLayout.LocalToCell(transform.position);
             BoundsInt areaTemp = _area;
             areaTemp.position = positionInt;
             Placed = true;
-            GridBuildingSystem.Current.TakeArea(areaTemp);
+            GridBuildingSystem.GridBuildingSystem.Current.TakeArea(areaTemp);
         
-            Initialize();
+            //Initialize();
         }
 
         #endregion

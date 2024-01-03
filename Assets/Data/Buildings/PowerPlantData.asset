@@ -17,7 +17,7 @@ MonoBehaviour:
   IsProductive: 0
   Icon: {fileID: 21300000, guid: 2a3aca3106951644181682381bfc858a, type: 3}
   HealthPoint: 50
-  Prefab: {fileID: 7476444902965605740, guid: 7e813c1dbe45b974c86dc09ee2c29a87, type: 3}
+  Prefab: {fileID: 8749535711585217009, guid: 7e813c1dbe45b974c86dc09ee2c29a87, type: 3}
   InfoString: 'The Power Plant excels at generating electricity from available resources
     in its vicinity. A robust energy output ensures the smooth operation of other
     structures and facilitates the swift production of military units.

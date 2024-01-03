@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 517384167638653418}
-  - component: {fileID: 2904805052528661450}
+  - component: {fileID: 8749535711585217009}
   - component: {fileID: 2480587413257512996}
   m_Layer: 0
   m_Name: PowerPlant
@@ -247,7 +247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5222689031839237682}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -256,7 +256,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2904805052528661450
+--- !u!114 &8749535711585217009
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,13 +265,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5222689031839237682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6db2c03e8efac5547a16d38514ddd201, type: 3}
+  m_Script: {fileID: 11500000, guid: 73b86c415c1092a4d944ccea1238bf28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _buildingData: {fileID: 11400000, guid: 34163bf4a33af924289e098463ead61b, type: 2}
   _area:
     m_Position: {x: 0, y: 0, z: 0}
-    m_Size: {x: 2, y: 3, z: 0}
+    m_Size: {x: 2, y: 3, z: 1}
 --- !u!61 &2480587413257512996
 BoxCollider2D:
   m_ObjectHideFlags: 0

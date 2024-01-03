@@ -402,7 +402,7 @@ MonoBehaviour:
   _buildingData: {fileID: 11400000, guid: 696eb94c76b57a648bc75b612c8d3cee, type: 2}
   _area:
     m_Position: {x: 0, y: 0, z: 0}
-    m_Size: {x: 4, y: 4, z: 0}
+    m_Size: {x: 4, y: 4, z: 1}
 --- !u!61 &4339143844016136287
 BoxCollider2D:
   m_ObjectHideFlags: 0

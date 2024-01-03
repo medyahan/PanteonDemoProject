@@ -4,7 +4,7 @@ using SoldierType = SoldierData.SoldierType;
 
 namespace MilitaryGame.Building
 {
-    public class Barrack : BaseBuilding
+    public class Barrack : Buildings.Building
     {
         [Header("SOLDIER SPAWN")] 
         [SerializeField] private Transform _soldierSpawnPoint;
