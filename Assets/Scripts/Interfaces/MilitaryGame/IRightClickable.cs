@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IRightClickable
+namespace Interfaces.MilitaryGame
 {
-    public void OnRightClick();
+    public interface IRightClickable
+    {
+        public void OnRightClick();
+    }
 }

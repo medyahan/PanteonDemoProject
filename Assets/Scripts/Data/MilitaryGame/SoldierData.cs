@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MilitaryGame.Soldier;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SoldierData", menuName = "Data/SoldierData")]

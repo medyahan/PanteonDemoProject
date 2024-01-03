@@ -1,47 +1,52 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Core;
+using MilitaryGame.Factory;
+using MilitaryGame.UI.ProductionMenu;
 using UnityEngine;
 
-public class MilitaryGameManager : BaseMonoBehaviour
+namespace MilitaryGame
 {
-    #region Variable Fields
+    public class MilitaryGameManager : BaseMonoBehaviour
+    {
+        #region Variable Fields
     
-    [Header("UI CONTROLLERS")]
-    [SerializeField] private ProductMenuController _productMenuController;
-    [SerializeField] private InformationPanelController _informationPanelController;
+        [Header("UI CONTROLLERS")]
+        [SerializeField] private ProductMenuController _productMenuController;
+        [SerializeField] private InformationPanelController _informationPanelController;
 
-    #endregion // Variable Fields
+        #endregion // Variable Fields
     
-    public override void Initialize(params object[] list)
-    {
-        base.Initialize(list);
+        public override void Initialize(params object[] list)
+        {
+            base.Initialize(list);
         
-        _productMenuController.Initialize();
-        _informationPanelController.Initialize();
+            _productMenuController.Initialize();
+            _informationPanelController.Initialize();
         
-        SoldierFactory.Instance.Initialize();
-        BuildingFactory.Instance.Initialize();
-    }
+            SoldierFactory.Instance.Initialize();
+            BuildingFactory.Instance.Initialize();
+        }
 
-    public override void RegisterEvents()
-    {
-        MilitaryGameEventLib.Instance.ShowBuildingInfo += _informationPanelController.ShowBuildingInfo;
-        MilitaryGameEventLib.Instance.CloseInformationPanel += _informationPanelController.Close;
-    }
+        public override void RegisterEvents()
+        {
+            MilitaryGameEventLib.Instance.ShowBuildingInfo += _informationPanelController.ShowBuildingInfo;
+            MilitaryGameEventLib.Instance.CloseInformationPanel += _informationPanelController.Close;
+        }
 
-    public override void UnregisterEvents()
-    {
-        MilitaryGameEventLib.Instance.ShowBuildingInfo -= _informationPanelController.ShowBuildingInfo;
-        MilitaryGameEventLib.Instance.CloseInformationPanel -= _informationPanelController.Close;
-    }
+        public override void UnregisterEvents()
+        {
+            MilitaryGameEventLib.Instance.ShowBuildingInfo -= _informationPanelController.ShowBuildingInfo;
+            MilitaryGameEventLib.Instance.CloseInformationPanel -= _informationPanelController.Close;
+        }
 
-    public override void End()
-    {
+        public override void End()
+        {
+            base.End();
         
-        _productMenuController.End();
-        _informationPanelController.End();
-        base.End();
+            _productMenuController.End();
+            _informationPanelController.End();
+        
+            SoldierFactory.Instance.End();
+            BuildingFactory.Instance.End();
+        }
     }
 }

@@ -1,46 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using Core;
 using MilitaryGame.Building;
-using MilitaryGame.GridBuildingSystem;
+using MilitaryGame.GridBuilding;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuildingSlotButton : BaseMonoBehaviour
+namespace MilitaryGame.UI.ProductionMenu
 {
-    [SerializeField] private Button _button;
-    [SerializeField] private Image _productIconImage;
-    [SerializeField] private TMP_Text _productNameText;
-
-    private BuildingData _buildingData;
-
-    public override void Initialize(params object[] list)
+    public class BuildingSlotButton : BaseMonoBehaviour
     {
-        base.Initialize(list);
+        [SerializeField] private Button _button;
+        [SerializeField] private Image _productIconImage;
+        [SerializeField] private TMP_Text _productNameText;
 
-        _buildingData = (BuildingData) list[0];
-        
-        _button.onClick.RemoveAllListeners();
-        _button.onClick.AddListener(OnClickProductButton);
-        
-        SetData(_buildingData);
-    }
+        private BuildingData _buildingData;
 
-    private void SetData(BuildingData buildingData)
-    {
-        _productIconImage.sprite = buildingData.Icon;
-        _productNameText.text = buildingData.Name;
-    }
-    
-    private void OnClickProductButton()
-    {
-        BaseBuilding tempBaseBuilding = GridBuildingSystem.Current.TempBaseBuilding;
-        if (tempBaseBuilding != null && !tempBaseBuilding.Placed)
+        public override void Initialize(params object[] list)
         {
-            GridBuildingSystem.Current.ClearTempBuilding();
-        }
+            base.Initialize(list);
+
+            _buildingData = (BuildingData) list[0];
         
-        GridBuildingSystem.Current.InitializeWithBuilding(_buildingData.Type);
+            _button.onClick.RemoveAllListeners();
+            _button.onClick.AddListener(OnClickProductButton);
+        
+            SetData(_buildingData);
+        }
+
+        // Sets the UI data for displaying information about a building.
+        private void SetData(BuildingData buildingData)
+        {
+            _productIconImage.sprite = buildingData.Icon;
+            _productNameText.text = buildingData.Name;
+        }
+    
+        // Clears any temporary building if present and initializes the grid system with the selected building type.
+        private void OnClickProductButton()
+        {
+            BaseBuilding tempBaseBuilding = GridBuildingSystem.Instance.TempBaseBuilding;
+            if (tempBaseBuilding != null && !tempBaseBuilding.Placed)
+            {
+                GridBuildingSystem.Instance.ClearTempBuilding();
+            }
+        
+            GridBuildingSystem.Instance.InitializeWithBuilding(_buildingData.Type);
+        }
     }
 }

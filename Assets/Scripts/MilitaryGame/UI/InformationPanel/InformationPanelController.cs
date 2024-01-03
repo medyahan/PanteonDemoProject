@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Core;
 using MilitaryGame.Building;
+using MilitaryGame.UI.InformationPanel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,8 +48,17 @@ public class InformationPanelController : BaseMonoBehaviour
         _mainPanel.SetActive(false);
     }
 
+    #region SHOWING INFO METHODS
+
+    /// <summary>
+    /// Displays information about the selected building in the UI.
+    /// </summary>
+    /// <param name="baseBuilding">The selected building to show information about.</param>
     public void ShowBuildingInfo(BaseBuilding baseBuilding)
     {
+        if(_tempBaseBuilding == baseBuilding && _mainPanel.activeSelf)
+            return;
+        
         Open();
 
         _tempBaseBuilding = baseBuilding;
@@ -60,6 +70,10 @@ public class InformationPanelController : BaseMonoBehaviour
         CheckProductive(baseBuilding.BuildingData.IsProductive);
     }
 
+    /// <summary>
+    /// Checks if the building is productive and updates the production panel accordingly.
+    /// </summary>
+    /// <param name="isProductive">A flag indicating whether the building is productive.</param>
     private void CheckProductive(bool isProductive)
     {
         _productionPanel.SetActive(isProductive);
@@ -69,6 +83,8 @@ public class InformationPanelController : BaseMonoBehaviour
             CreateSoldierSlots();
         }
     }
+    
+    #endregion
 
     #region SOLDIER SLOT TRANSACTIONS
     

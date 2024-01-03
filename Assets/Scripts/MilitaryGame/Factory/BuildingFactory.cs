@@ -1,34 +1,47 @@
-using System.Collections;
 using System.Collections.Generic;
 using MilitaryGame.Building;
 using UnityEngine;
 using BuildingType = BuildingData.BuildingType;
 
-public class BuildingFactory : Singleton<BuildingFactory>
+namespace MilitaryGame.Factory
 {
-    [Header("BUILDING COUNT")]
-    [SerializeField] private int _buildingCount;
-
-    [Header("BUILDING DATA LIST")]
-    [SerializeField] private List<BuildingData> _buildingDataList = new List<BuildingData>();
-
-    private Dictionary<BuildingType, ObjectPool<BaseBuilding>> _buildingPoolList = new Dictionary<BuildingType, ObjectPool<BaseBuilding>>();
-
-    public void Initialize()
+    public class BuildingFactory : Singleton<BuildingFactory>
     {
-        foreach (BuildingData buildingData in _buildingDataList)
+        [Header("BUILDING COUNT")]
+        [SerializeField] private int _buildingCount;
+
+        [Header("BUILDING DATA LIST")]
+        [SerializeField] private List<BuildingData> _buildingDataList = new List<BuildingData>();
+
+        private Dictionary<BuildingType, ObjectPool<BaseBuilding>> _buildingPoolList = new Dictionary<BuildingType, ObjectPool<BaseBuilding>>();
+
+        public void Initialize()
         {
-            _buildingPoolList.Add(buildingData.Type, new ObjectPool<BaseBuilding>(transform, buildingData.Prefab, _buildingCount));
+            // Initializes the building pool for each building data in the list.
+            foreach (BuildingData buildingData in _buildingDataList)
+            {
+                _buildingPoolList.Add(buildingData.Type, new ObjectPool<BaseBuilding>(transform, buildingData.Prefab, _buildingCount));
+            }
         }
-    }
 
-    public BaseBuilding CreateBuilding(BuildingType buildingType, Vector3 position, Quaternion rotation)
-    {
-        return _buildingPoolList[buildingType].GetObject(position, rotation);
-    }
+        // Creates a building of the specified type at the given position and rotation using the building pool.
+        public BaseBuilding CreateBuilding(BuildingType buildingType, Vector3 position, Quaternion rotation)
+        {
+            return _buildingPoolList[buildingType].GetObject(position, rotation);
+        }
 
-    public void DestroyBuilding(BaseBuilding building)
-    {
-        _buildingPoolList[building.BuildingData.Type].ReturnObject(building);
+        // Destroys the specified building by returning it to the building pool.
+        public void DestroyBuilding(BaseBuilding building)
+        {
+            _buildingPoolList[building.BuildingData.Type].ReturnObject(building);
+        }
+    
+        public void End()
+        {
+            foreach (var pool in _buildingPoolList.Values)
+            {
+                pool.ClearPool();
+            }
+        }
     }
 }

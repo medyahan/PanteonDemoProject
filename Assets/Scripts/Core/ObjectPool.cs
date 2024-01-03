@@ -47,4 +47,9 @@ public class ObjectPool<T> where T : Component
         obj.gameObject.SetActive(false);
         _pool.Enqueue(obj);
     }
+    
+    public void ClearPool()
+    {
+        _pool.Clear();
+    }
 }

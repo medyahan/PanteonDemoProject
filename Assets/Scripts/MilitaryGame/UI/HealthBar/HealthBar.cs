@@ -1,31 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using Core;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : BaseMonoBehaviour
+namespace MilitaryGame.UI.HealthBar
 {
-    [SerializeField] private Image _fillImage;
-    [SerializeField] private TMP_Text _healtValueText;
-    [SerializeField] private float _fillDuration;
+    public class HealthBar : BaseMonoBehaviour
+    {
+        [SerializeField] private Image _fillImage;
+        [SerializeField] private TMP_Text _healtValueText;
+        [SerializeField] private float _fillDuration;
 
-    private float _maxValue;
+        private float _maxValue;
     
-    public override void Initialize(params object[] list)
-    {
-        base.Initialize(list);
+        public override void Initialize(params object[] list)
+        {
+            base.Initialize(list);
 
-        _maxValue = (float) list[0];
+            _maxValue = (float) list[0];
         
-        SetHealthBar(_maxValue);
-    }
+            SetHealthBar(_maxValue);
+        }
 
-    public void SetHealthBar(float currentValue)
-    {
-        _fillImage.DOFillAmount(currentValue / _maxValue, _fillDuration);
-        _healtValueText.text = ((int)currentValue).ToString();
+        /// <summary>
+        /// Updates the health bar with the specified current value.
+        /// </summary>
+        /// <param name="currentValue">The current value of the health bar.</param>
+        public void SetHealthBar(float currentValue)
+        {
+            _fillImage.DOFillAmount(currentValue / _maxValue, _fillDuration);
+            _healtValueText.text = ((int)currentValue).ToString();
+        }
     }
 }

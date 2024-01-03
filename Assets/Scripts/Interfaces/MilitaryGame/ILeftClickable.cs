@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface ILeftClickable
+namespace Interfaces.MilitaryGame
 {
-    public void OnLeftClick();
+    public interface ILeftClickable
+    {
+        public void OnLeftClick();
+    }
 }

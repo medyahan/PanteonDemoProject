@@ -1,43 +1,43 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Core;
+using Interfaces.MilitaryGame;
 using UnityEngine;
 
-public class InputManager : Singleton<InputManager>
+namespace MilitaryGame.Managers
 {
-    private Camera _camera;
-
-    protected override void Awake()
+    public class InputManager : Singleton<InputManager>
     {
-        base.Awake();
-        _camera = Camera.main;
-    }
+        private Camera _camera;
 
-    private void Update()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(Input.mousePosition),
-            _camera.transform.position);
-
-        if (hit.collider is null)
-            return;
-        
-        if (Input.GetMouseButtonDown(0))
+        protected override void Awake()
         {
-            if (hit.transform.CompareTag("GameBoard"))
-            {
-                MilitaryGameEventLib.Instance.CloseInformationPanel();
+            base.Awake();
+            _camera = Camera.main;
+        }
+
+        private void Update()
+        {
+            RaycastHit2D hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(Input.mousePosition),
+                _camera.transform.position);
+
+            if (hit.collider is null)
                 return;
-            }
+        
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (hit.transform.CompareTag("GameBoard"))
+                {
+                    MilitaryGameEventLib.Instance.CloseInformationPanel?.Invoke();
+                    return;
+                }
             
-            if (hit.transform.gameObject.TryGetComponent(out ILeftClickable clickable))
-                clickable.OnLeftClick();
-        }
+                if (hit.transform.gameObject.TryGetComponent(out ILeftClickable clickable))
+                    clickable.OnLeftClick();
+            }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (hit.transform.gameObject.TryGetComponent(out IRightClickable clickable))
-                clickable.OnRightClick();
-        }
-    }   
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (hit.transform.gameObject.TryGetComponent(out IRightClickable clickable))
+                    clickable.OnRightClick();
+            }
+        }   
+    }
 }

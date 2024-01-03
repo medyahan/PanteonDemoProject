@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4361182636781176293}
   - component: {fileID: 4361182636781176292}
   - component: {fileID: 5736445519252247596}
+  - component: {fileID: 985795466694841853}
   m_Layer: 0
   m_Name: SoldierGeneral
   m_TagString: Untagged
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soldierData: {fileID: 11400000, guid: 7422e5db25bcfad469b305e420ddbe70, type: 2}
   _healthBar: {fileID: 8114358886372357543}
+  _navMeshAgent: {fileID: 985795466694841853}
 --- !u!212 &4361182636781176293
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -148,6 +150,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.8}
   m_EdgeRadius: 0
+--- !u!195 &985795466694841853
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361182636781176295}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.6
+  m_Speed: 10
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.79
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &7509669046845909520
 GameObject:
   m_ObjectHideFlags: 0
