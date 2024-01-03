@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Core;
 using MilitaryGame.Building;
-using MilitaryGame.Buildings;
 using MilitaryGame.GridBuildingSystem;
 using TMPro;
 using UnityEngine;
@@ -36,12 +35,12 @@ public class BuildingSlotButton : BaseMonoBehaviour
     
     private void OnClickProductButton()
     {
-        Building tempBuilding = GridBuildingSystem.Current.TempBuilding;
-        if (tempBuilding != null && !tempBuilding.Placed)
+        BaseBuilding tempBaseBuilding = GridBuildingSystem.Current.TempBaseBuilding;
+        if (tempBaseBuilding != null && !tempBaseBuilding.Placed)
         {
             GridBuildingSystem.Current.ClearTempBuilding();
         }
         
-        GridBuildingSystem.Current.InitializeWithBuilding(_buildingData.Prefab);
+        GridBuildingSystem.Current.InitializeWithBuilding(_buildingData.Type);
     }
 }

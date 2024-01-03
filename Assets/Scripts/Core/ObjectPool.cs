@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ObjectPool<T> where T : Component
@@ -28,7 +29,7 @@ public class ObjectPool<T> where T : Component
         return newObj;
     }
 
-    public T GetObject()
+    public T GetObject(Vector3 position, Quaternion rotation)
     {
         if (_pool.Count == 0)
         {

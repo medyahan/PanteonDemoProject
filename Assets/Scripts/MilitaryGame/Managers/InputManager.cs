@@ -24,7 +24,7 @@ public class InputManager : Singleton<InputManager>
         
         if (Input.GetMouseButtonDown(0))
         {
-            if (hit.transform.CompareTag("Ground"))
+            if (hit.transform.CompareTag("GameBoard"))
             {
                 MilitaryGameEventLib.Instance.CloseInformationPanel();
                 return;

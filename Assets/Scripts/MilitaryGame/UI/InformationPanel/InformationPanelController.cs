@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Core;
 using MilitaryGame.Building;
-using MilitaryGame.Buildings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,7 +26,7 @@ public class InformationPanelController : BaseMonoBehaviour
     [SerializeField] private List<SoldierData> _soldierDataList = new List<SoldierData>();
     
     private List<SoldierSlot> _soldierSlotList = new List<SoldierSlot>();
-    private Building _tempBuilding;
+    private BaseBuilding _tempBaseBuilding;
 
     #endregion // Variable Fields
 
@@ -48,27 +47,27 @@ public class InformationPanelController : BaseMonoBehaviour
         _mainPanel.SetActive(false);
     }
 
-    public void ShowBuildingInfo(Building building)
+    public void ShowBuildingInfo(BaseBuilding baseBuilding)
     {
         Open();
 
-        _tempBuilding = building;
+        _tempBaseBuilding = baseBuilding;
 
-        _buildingIconImage.sprite = building.BuildingData.Icon;
-        _buildingInfoText.text = building.BuildingData.InfoString;
-        _buildingNameText.text = building.BuildingData.Name;
+        _buildingIconImage.sprite = baseBuilding.BuildingData.Icon;
+        _buildingInfoText.text = baseBuilding.BuildingData.InfoString;
+        _buildingNameText.text = baseBuilding.BuildingData.Name;
         
-        CheckProductive(building.BuildingData.IsProductive);
+        CheckProductive(baseBuilding.BuildingData.IsProductive);
     }
 
     private void CheckProductive(bool isProductive)
     {
         _productionPanel.SetActive(isProductive);
 
-        // if (isProductive && _tempBuilding.BuildingData.Type == BuildingType.Barrack)
-        // {
-        //     //CreateSoldierSlots();
-        // }
+        if (isProductive && _tempBaseBuilding.BuildingData.Type == BuildingType.Barrack)
+        {
+            CreateSoldierSlots();
+        }
     }
 
     #region SOLDIER SLOT TRANSACTIONS
@@ -77,17 +76,17 @@ public class InformationPanelController : BaseMonoBehaviour
     {
         ClearAllSoldierSlot();
         
-        // Barrack barrack = _tempBuilding as Barrack;
-        //
-        // for (int i = 0; i < _soldierDataList.Count; i++)
-        // {
-        //     SoldierSlot soldierSlot = Instantiate(_soldierSlotPrefab, _productionContentParent);
-        //
-        //     if (barrack is not null) 
-        //         soldierSlot.Initialize(_soldierDataList[i], barrack.SoldierSpawnPoint);
-        //
-        //     _soldierSlotList.Add(soldierSlot);
-        // }
+        Barrack barrack = _tempBaseBuilding as Barrack;
+        
+        for (int i = 0; i < _soldierDataList.Count; i++)
+        {
+            SoldierSlot soldierSlot = Instantiate(_soldierSlotPrefab, _productionContentParent);
+        
+            if (barrack is not null) 
+                soldierSlot.Initialize(_soldierDataList[i], barrack);
+        
+            _soldierSlotList.Add(soldierSlot);
+        }
     }
     
     private void ClearAllSoldierSlot()

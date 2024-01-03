@@ -12,9 +12,6 @@ public class MilitaryGameManager : BaseMonoBehaviour
     [SerializeField] private ProductMenuController _productMenuController;
     [SerializeField] private InformationPanelController _informationPanelController;
 
-    [Header("MILITARY GAME CONTROLLERS")] 
-    [SerializeField] private GameBoardManager _gameBoardManager;
-    
     #endregion // Variable Fields
     
     public override void Initialize(params object[] list)
@@ -24,7 +21,8 @@ public class MilitaryGameManager : BaseMonoBehaviour
         _productMenuController.Initialize();
         _informationPanelController.Initialize();
         
-        _gameBoardManager.Initialize();
+        SoldierFactory.Instance.Initialize();
+        BuildingFactory.Instance.Initialize();
     }
 
     public override void RegisterEvents()
@@ -41,11 +39,9 @@ public class MilitaryGameManager : BaseMonoBehaviour
 
     public override void End()
     {
-        base.End();
         
         _productMenuController.End();
         _informationPanelController.End();
-        
-        _gameBoardManager.End();
+        base.End();
     }
 }

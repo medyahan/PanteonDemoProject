@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Core;
+using MilitaryGame.Building;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,12 +14,14 @@ public class SoldierSlot : BaseMonoBehaviour
     [SerializeField] private TMP_Text _soldierAttackText;
 
     private SoldierData _soldierData;
+    private Barrack _barrack;
 
     public override void Initialize(params object[] list)
     {
         base.Initialize(list);
 
         _soldierData = (SoldierData) list[0];
+        _barrack = (Barrack) list[1];
         
         _produceButton.onClick.RemoveAllListeners();
         _produceButton.onClick.AddListener(OnClickProduceButton);
@@ -35,7 +38,7 @@ public class SoldierSlot : BaseMonoBehaviour
     
     private void OnClickProduceButton()
     {
-        
+        _barrack.ProduceSoldier(_soldierData.Type);
     }
 }
     

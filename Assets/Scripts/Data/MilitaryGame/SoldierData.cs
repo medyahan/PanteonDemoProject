@@ -10,6 +10,7 @@ public class SoldierData : ScriptableObject
     public Sprite Icon;
     public int HealthPoint;
     public int DamagePoint;
+    public Soldier Prefab;
     
     public enum SoldierType
     {

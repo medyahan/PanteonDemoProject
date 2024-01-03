@@ -1,15 +1,18 @@
 using Core;
 using UnityEngine;
 
-namespace MilitaryGame.Buildings
+namespace MilitaryGame.Building
 {
-    public class Building : BaseMonoBehaviour, ILeftClickable
+    public class BaseBuilding : BaseMonoBehaviour, ILeftClickable
     {
         [SerializeField] private protected BuildingData _buildingData;
         [SerializeField] private BoundsInt _area;
 
-        public bool Placed { get; private set; }//
-        public BoundsInt Area//
+        [Header("HEALTH BAR")] 
+        [SerializeField] protected HealthBar _healthBar;
+        
+        public bool Placed { get; protected set; }
+        public BoundsInt Area
         {
             get => _area;
             set => _area = value;
@@ -20,15 +23,29 @@ namespace MilitaryGame.Buildings
         public override void Initialize(params object[] list)
         {
             base.Initialize(list);
-        
-            // health bar ekle
+            
+            ActivateHealthBar();
         }
-    
+
+        private void ActivateHealthBar()
+        {
+            _healthBar.gameObject.SetActive(true);
+            _healthBar.Initialize((float)_buildingData.HealthPoint);
+        }
+        
         public void OnLeftClick()
         {
             if(!Placed) return;
             
             MilitaryGameEventLib.Instance.ShowBuildingInfo(this);
+        }
+        
+        public override void End()
+        {
+            base.End();
+            
+            Placed = false;
+            _healthBar.gameObject.SetActive(false);
         }
 
         #region BUILD PLACEMENT METHODS
@@ -55,7 +72,7 @@ namespace MilitaryGame.Buildings
             Placed = true;
             GridBuildingSystem.GridBuildingSystem.Current.TakeArea(areaTemp);
         
-            //Initialize();
+            Initialize();
         }
 
         #endregion

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MilitaryGame.Building;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
@@ -11,13 +12,13 @@ namespace MilitaryGame.GridBuildingSystem
     {
         #region Variable Fields
     
-        public static GridBuildingSystem Current;//
+        public static GridBuildingSystem Current;
 
-        [SerializeField] private GridLayout _gridLayout;//
+        [SerializeField] private GridLayout _gridLayout;
     
         [Header("TILE MAPS")]
-        [SerializeField] private Tilemap _mainTilemap;//
-        [SerializeField] private Tilemap _tempTilemap;//    
+        [SerializeField] private Tilemap _mainTilemap;
+        [SerializeField] private Tilemap _tempTilemap;   
 
         [Header("TILE BASES")]
         [SerializeField] private TileBase _whiteTileBase;
@@ -26,23 +27,23 @@ namespace MilitaryGame.GridBuildingSystem
 
         private static Dictionary<TileType, TileBase> _tileBases = new Dictionary<TileType, TileBase>();
 
-        private Buildings.Building _tempBuilding;//
-        private Vector3 _prevBuildingPos;//
-        private BoundsInt _prevArea;//
+        private BaseBuilding _tempBaseBuilding;
+        private Vector3 _prevBuildingPos;
+        private BoundsInt _prevArea;
 
-        public GridLayout GridLayout => _gridLayout;//
-        public Buildings.Building TempBuilding => _tempBuilding;
+        public GridLayout GridLayout => _gridLayout;
+        public BaseBuilding TempBaseBuilding => _tempBaseBuilding;
     
         #endregion // Variable Fields
     
         #region UNITY METHODS
 
-        private void Awake()//
+        private void Awake()
         {
             Current = this;
         }
 
-        private void Start()//
+        private void Start()
         {
             _tileBases.Add(TileType.Empty, null);
             _tileBases.Add(TileType.White, _whiteTileBase);
@@ -52,20 +53,20 @@ namespace MilitaryGame.GridBuildingSystem
 
         private void Update()
         {
-            if(!_tempBuilding)
+            if(!_tempBaseBuilding)
                 return;
             
             if(EventSystem.current.IsPointerOverGameObject(0))
                 return;
                 
-            if (!_tempBuilding.Placed)
+            if (!_tempBaseBuilding.Placed)
             {
                 Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector3Int cellpos = _gridLayout.LocalToCell(touchPos);
 
                 if (_prevBuildingPos != cellpos)
                 {
-                    _tempBuilding.transform.localPosition =
+                    _tempBaseBuilding.transform.localPosition =
                         _gridLayout.CellToLocalInterpolated(cellpos);
 
                     _prevBuildingPos = cellpos; 
@@ -75,13 +76,12 @@ namespace MilitaryGame.GridBuildingSystem
             
             if (Input.GetMouseButtonDown(0))
             {
-                if(_tempBuilding.Placed)
+                if(_tempBaseBuilding.Placed)
                     return;
                 
-                if (_tempBuilding.CanBePlaced())
+                if (_tempBaseBuilding.CanBePlaced())
                 {
-                    Debug.Log("placed: " + _tempBuilding.gameObject.name);
-                    _tempBuilding.Place();
+                    _tempBaseBuilding.Place();
                 }
             }
 
@@ -140,12 +140,8 @@ namespace MilitaryGame.GridBuildingSystem
         {
             ClearArea();
 
-            BoundsInt tempBuildingArea = _tempBuilding.Area;
-            tempBuildingArea.position = _gridLayout.WorldToCell(_tempBuilding.gameObject.transform.position);
-            //tempBuildingArea.position = _gridLayout.WorldToCell(_tempBuilding.gameObject.transform.position);
-
-            //_tempBuilding.Area = tempBuildingArea;
-
+            BoundsInt tempBuildingArea = _tempBaseBuilding.Area;
+            tempBuildingArea.position = _gridLayout.WorldToCell(_tempBaseBuilding.gameObject.transform.position);
             TileBase[] baseArray = GetTilesBlock(tempBuildingArea, _mainTilemap);
 
             int size = baseArray.Length;
@@ -178,7 +174,6 @@ namespace MilitaryGame.GridBuildingSystem
             {
                 if (tileBase != _tileBases[TileType.White])
                 {
-                    Debug.Log("Cannot place here");
                     return false;
                 }
             }
@@ -195,16 +190,18 @@ namespace MilitaryGame.GridBuildingSystem
         public void ClearTempBuilding()
         {
             ClearArea();
-            Destroy(_tempBuilding.gameObject);
+            _tempBaseBuilding.End();
+            BuildingFactory.Instance.DestroyBuilding(_tempBaseBuilding);
+            _tempBaseBuilding = null;
         }
         
         #endregion
 
         #region BUILDING PLACEMENT
         
-        public void InitializeWithBuilding(Buildings.Building building)
+        public void InitializeWithBuilding(BuildingData.BuildingType buildingType)
         {
-            _tempBuilding = Instantiate(building, Vector3.zero, Quaternion.identity);
+            _tempBaseBuilding = BuildingFactory.Instance.CreateBuilding(buildingType, Vector3.zero, Quaternion.identity);
         
             FollowBuilding();   
         }
@@ -212,7 +209,7 @@ namespace MilitaryGame.GridBuildingSystem
         #endregion
     }
 
-    public enum TileType//
+    public enum TileType
     {
         Empty,
         White,

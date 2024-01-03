@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 
-public class Soldier : MonoBehaviour
+public class Soldier : BaseMonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private SoldierData _soldierData;
+    [SerializeField] private HealthBar _healthBar;
+
+    public SoldierData SoldierData => _soldierData;
+
+    public override void Initialize(params object[] list)
     {
-        
+        base.Initialize(list);
+
+        _healthBar.Initialize((float)_soldierData.HealthPoint);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void End()
     {
         
     }
