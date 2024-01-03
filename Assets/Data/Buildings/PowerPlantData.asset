@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Power Plant
   Type: 1
   IsProductive: 0
-  Icon: {fileID: 21300000, guid: 2a3aca3106951644181682381bfc858a, type: 3}
+  Icon: {fileID: 21300000, guid: 0cda1e9a0263d8a468226485247354ca, type: 3}
   HealthPoint: 50
   Prefab: {fileID: 2689855791674831081, guid: 7e813c1dbe45b974c86dc09ee2c29a87, type: 3}
   InfoString: 'The Power Plant excels at generating electricity from available resources

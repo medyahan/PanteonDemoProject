@@ -24,6 +24,7 @@ namespace MilitaryGame.GridBuildingSystem
         [SerializeField] private TileBase _whiteTileBase;
         [SerializeField] private TileBase _greenTileBase;
         [SerializeField] private TileBase _redTileBase;
+        [SerializeField] private TileBase _fillTileBase;
 
         private static Dictionary<TileType, TileBase> _tileBases = new Dictionary<TileType, TileBase>();
 
@@ -49,6 +50,7 @@ namespace MilitaryGame.GridBuildingSystem
             _tileBases.Add(TileType.White, _whiteTileBase);
             _tileBases.Add(TileType.Green, _greenTileBase);
             _tileBases.Add(TileType.Red, _redTileBase);
+            _tileBases.Add(TileType.Fill, _fillTileBase);
         }
 
         private void Update()
@@ -184,7 +186,7 @@ namespace MilitaryGame.GridBuildingSystem
         public void TakeArea(BoundsInt area)
         {
             SetTilesBlock(area, TileType.Empty, _tempTilemap);
-            SetTilesBlock(area, TileType.Green, _mainTilemap);
+            SetTilesBlock(area, TileType.Fill, _mainTilemap);
         }
         
         public void ClearTempBuilding()
@@ -214,6 +216,7 @@ namespace MilitaryGame.GridBuildingSystem
         Empty,
         White,
         Green,
-        Red
+        Red,
+        Fill
     }
 }

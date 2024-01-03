@@ -14,13 +14,6 @@ public class ProductMenuController : BaseMonoBehaviour
     [Header("BUILDING SLOT")]
     [SerializeField] private BuildingSlotButton _buildingSlotButtonPref;
     [SerializeField] private Transform _contentParent;
-    
-    [Header("BUTTON")]
-    [SerializeField] private Button _headerMenuButton;
-    
-    [Header("MENU VALUES")]
-    [SerializeField] private float _openCloseAnimateDuration;
-    [SerializeField] private float _closedMenuPositionY;
 
     private List<BuildingSlotButton> _buildingSlotButtonList = new List<BuildingSlotButton>();
     private bool _isMenuOpen;
@@ -30,21 +23,10 @@ public class ProductMenuController : BaseMonoBehaviour
     public override void Initialize(params object[] list)
     {
         base.Initialize(list);
-        
-        //_headerMenuButton.onClick.RemoveAllListeners();
-        //_headerMenuButton.onClick.AddListener(OnClickProductMenuButton);
-        //ResetMenuPositionAsClose();
-        
+
         CreateProductSlotButtons();
     }
-
-    private void ResetMenuPositionAsClose()
-    {
-        Vector3 position = transform.position;
-        position.y = _closedMenuPositionY;
-        transform.position = position;
-    }
-
+    
     private void CreateProductSlotButtons()
     {
         for (int i = 0; i < _buildingDataList.Count; i++)
@@ -57,17 +39,15 @@ public class ProductMenuController : BaseMonoBehaviour
         }
     }
 
-    private void OnClickProductMenuButton()
+    public override void End()
     {
-        if (_isMenuOpen)
+        base.End();
+        
+        foreach (BuildingSlotButton slotButton in _buildingSlotButtonList)
         {
-            transform.DOMoveY(_closedMenuPositionY, _openCloseAnimateDuration);
+            slotButton.End();
+            Destroy(slotButton.gameObject);
         }
-        else
-        {
-            transform.DOMoveY(0, _openCloseAnimateDuration);
-        }
-
-        _isMenuOpen = !_isMenuOpen;
+        _buildingSlotButtonList.Clear();
     }
 }
