@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Core;
 using DG.Tweening;
@@ -11,24 +12,38 @@ using UnityEngine.Tilemaps;
 
 namespace MilitaryGame.Soldier
 {
-    public class Soldier : BaseMonoBehaviour, ILeftClickable, IAttackable, IDamageable
+    public class Soldier : BaseMonoBehaviour, ILeftClickable, IAttackable, IDamageable, IRightClickable
     {
         #region Variable Fields
-        
+
         [SerializeField] private SoldierData _soldierData;
         [SerializeField] private HealthBar _healthBar;
-        [SerializeField] private NavMeshAgent _navMeshAgent;
+        [SerializeField] private GameObject _selectedObj;
 
         public SoldierData SoldierData => _soldierData;
 
         private Tilemap _tilemap;
         private Vector3Int _targetPosition;
-        
+
         private bool _isSelected;
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                _selectedObj.SetActive(value);
+            }
+        }
+
         private float _currentHealthPoint;
-        
+        public bool IsAttacking { get; set; }
+
+        private BaseBuilding _building;
+
         #endregion // Variable Fields
-    
+
         public override void Initialize(params object[] list)
         {
             base.Initialize(list);
@@ -36,63 +51,95 @@ namespace MilitaryGame.Soldier
             _healthBar.Initialize(_currentHealthPoint);
             _tilemap = GridBuildingSystem.Instance.MainTilemap;
         }
-    
+
         private void Update()
         {
-            if(!_isSelected) return;
-        
+            if (!IsSelected) return;
+
             if (Input.GetMouseButtonDown(1))
             {
-                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                //_targetPosition = _tilemap.WorldToCell(mouseWorldPos);
                 
-                //Vector3Int soldierPos = _tilemap.WorldToCell(transform.position);
-                
-                Vector3Int startCellPos = _tilemap.WorldToCell(transform.position);
-                Vector3Int endCellPos = _tilemap.WorldToCell(mouseWorldPos);
-                
-                // Find a path from the current position to the target position and move along the path.
-                List<Vector3Int> path = Pathfinder.Pathfinder.Instance.FindPath(startCellPos, endCellPos);
-                MoveOnPath(path);
+                // BaseBuilding building = MilitaryGameEventLib.Instance.GetSelectedBuildingForAttack?.Invoke();
+                //
+                // if (building != null)
+                // {
+                //     Attack(building);
+                // }
+                Move();
             }
         }
+
+        private void Move()
+        {
+            IsSelected = false;
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPos.z = 0;
+
+            Vector3Int startCellPos = _tilemap.WorldToCell(transform.position);
+            Vector3Int endCellPos = _tilemap.WorldToCell(mouseWorldPos);
+
+            // Find a path from the current position to the target position and move along the path.
+            List<Vector3Int> path = Pathfinder.Pathfinder.Instance.FindPath(startCellPos, endCellPos);
+            StartCoroutine(MoveOnPath(path));
+        }
         
+        public void OnLeftClick()
+        {
+            if(!IsAttacking)
+                IsSelected = true;
+        }
+        
+        public void OnRightClick()
+        {
+            if (!IsSelected)
+            {
+                // bu asker hasar görecek
+            }
+        }
+
         public void TakeDamage(int damage)
         {
             _currentHealthPoint -= damage;
             _healthBar.SetHealthBar(_currentHealthPoint);
         }
-        
-        public void Attack()
+
+        public void Attack(IDamageable damageableObject)
         {
-            // BaseBuilding building;
-            // building.TakeDamage(_soldierData.DamagePoint);
+            IsAttacking = true;
+            StartCoroutine(AttackCoroutine(damageableObject));
+        }
+
+        private IEnumerator AttackCoroutine(IDamageable damageableObject)
+        {
+            while (damageableObject != null)
+            {
+                damageableObject.TakeDamage(_soldierData.DamagePoint);
+                yield return new WaitForSeconds(1f);
+            }
+
+            IsAttacking = false;
         }
 
         /// <summary>
         /// Moves the agent along the specified path.
         /// </summary>
         /// <param name="path">The list of cell positions representing the path.</param>
-        private void MoveOnPath(List<Vector3Int> path)
+        private IEnumerator MoveOnPath(List<Vector3Int> path)
         {
-            Debug.Log("path count" + path.Count);
-            if (path.Count > 0)
+            int index = 0;
+            while (path.Count > 0 && index < path.Count)
             {
-                Vector3 targetWorldPos = _tilemap.GetCellCenterWorld(path[path.Count - 1]);
-                transform.DOMove(targetWorldPos, .4f);
-                //_navMeshAgent.SetDestination(targetWorldPos);
+                Vector3 targetWorldPos = _tilemap.GetCellCenterWorld(path[index]);
+                transform.DOMove(targetWorldPos, .2f);
+                index++;
+                yield return new WaitForSeconds(.2f);
             }
         }
-    
-        public void OnLeftClick()
-        {
-            _isSelected = true;
-        }
-
+        
         public override void End()
         {
             base.End();
-            _isSelected = false;
+            IsSelected = false;
         }
     }
 }

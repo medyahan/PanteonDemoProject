@@ -33,16 +33,6 @@ namespace MilitaryGame.Building
         public override void End()
         {
             base.End();
-            
-            foreach (Soldier.Soldier soldier in _soldierList)
-            {
-                if(soldier == null)
-                    continue;
-                
-                soldier.End();
-                Destroy(soldier.gameObject);
-            }
-            _soldierList.Clear();
         }
     }
 }

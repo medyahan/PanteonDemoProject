@@ -28,9 +28,12 @@ namespace MilitaryGame.Managers
                     MilitaryGameEventLib.Instance.CloseInformationPanel?.Invoke();
                     return;
                 }
-            
+
                 if (hit.transform.gameObject.TryGetComponent(out ILeftClickable clickable))
+                {
+                    Debug.Log("left click");
                     clickable.OnLeftClick();
+                }
             }
 
             if (Input.GetMouseButtonDown(1))

@@ -33,6 +33,8 @@ namespace MilitaryGame.GridBuilding
 
         public GridLayout GridLayout => _gridLayout;
         public Tilemap MainTilemap => _mainTilemap;
+
+        public TileBase RedTileBase => _redTileBase;
         public BaseBuilding TempBaseBuilding => _tempBaseBuilding;
     
         #endregion // Variable Fields
@@ -84,6 +86,7 @@ namespace MilitaryGame.GridBuilding
                 if (_tempBaseBuilding.CanBePlaced())
                 {
                     _tempBaseBuilding.Place();
+                    _tempBaseBuilding = null;
                 }
             }
 
@@ -235,6 +238,30 @@ namespace MilitaryGame.GridBuilding
             _tempBaseBuilding = null;
         }
         
+        public void ClearPlacedBuilding(BaseBuilding placedBuilding)
+        {
+            placedBuilding.End();
+            BuildingFactory.Instance.DestroyBuilding(placedBuilding);
+            
+            BoundsInt placedBuildingArea = placedBuilding.Area;
+            placedBuildingArea.position = _gridLayout.WorldToCell(placedBuilding.gameObject.transform.position);
+            
+            TileBase[] baseArray = GetTilesBlock(placedBuildingArea, _mainTilemap);
+            int size = baseArray.Length;
+            TileBase[] tileArray = new TileBase[size];
+
+            for (int i = 0; i < baseArray.Length; i++)
+            {
+                if (baseArray[i] == _tileBases[TileType.Fill])
+                {
+                    tileArray[i] = _tileBases[TileType.White];
+                }
+            }
+            
+            SetTilesBlock(placedBuildingArea, TileType.White, _mainTilemap);
+            ClearArea();
+        }
+
         #endregion
 
         #region BUILDING PLACEMENT

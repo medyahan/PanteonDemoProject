@@ -52,6 +52,11 @@ namespace MilitaryGame.Building
         {
             _currentHealthPoint -= damage;
             _healthBar.SetHealthBar(_currentHealthPoint);
+            
+            if (_currentHealthPoint <= 0)
+            {
+                GridBuildingSystem.Instance.ClearPlacedBuilding(this);
+            }
         }
 
         #region CLICK METHODS
@@ -62,8 +67,11 @@ namespace MilitaryGame.Building
             
             MilitaryGameEventLib.Instance.ShowBuildingInfo?.Invoke(this);
         }
-        
-        public void OnRightClick() { }
+
+        public void OnRightClick()
+        {
+            MilitaryGameEventLib.Instance.SetSelectedBuildingForAttack?.Invoke(this);
+        }
 
         #endregion
 

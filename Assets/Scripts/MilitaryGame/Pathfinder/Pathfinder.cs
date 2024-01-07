@@ -7,8 +7,8 @@ namespace MilitaryGame.Pathfinder
     public class Pathfinder : Singleton<Pathfinder>
     {
         [SerializeField] private Tilemap _tilemap;
-        [SerializeField] private TileBase _whiteTile; 
-    
+        [SerializeField] private TileBase _whiteTile;
+
         // A* pathfinding 
         public List<Vector3Int> FindPath(Vector3Int start, Vector3Int end)
         {
@@ -94,7 +94,6 @@ namespace MilitaryGame.Pathfinder
         private bool IsWalkable(Vector3Int position)
         {
             TileBase tile = _tilemap.GetTile(position);
-            Debug.Log("white: " + (tile == _whiteTile));
             return tile == _whiteTile; 
         }
 
@@ -106,7 +105,6 @@ namespace MilitaryGame.Pathfinder
             neighbors.Add(new Vector3Int(position.x, position.y + 1, position.z));
             neighbors.Add(new Vector3Int(position.x, position.y - 1, position.z));
             
-            Debug.Log("komşu sayıs: " + neighbors.Count);
             return neighbors;
         }
     }

@@ -7,6 +7,8 @@ namespace MilitaryGame
     {
         public Action<BaseBuilding> ShowBuildingInfo;
         public Action CloseInformationPanel;
+        public Action<BaseBuilding> SetSelectedBuildingForAttack;
+        public Func<BaseBuilding> GetSelectedBuildingForAttack;
 
         protected override void Awake()
         {
@@ -18,6 +20,8 @@ namespace MilitaryGame
         {
             ShowBuildingInfo = null;
             CloseInformationPanel = null;
+            SetSelectedBuildingForAttack = null;
+            GetSelectedBuildingForAttack = null;
         }
     }
 }
