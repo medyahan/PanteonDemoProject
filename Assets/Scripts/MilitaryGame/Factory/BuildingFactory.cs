@@ -11,13 +11,14 @@ namespace MilitaryGame.Factory
         [Header("BUILDING COUNT")]
         [SerializeField] private int _buildingCount;
 
-        [Header("BUILDING DATA LIST")]
-        [SerializeField] private List<BuildingData> _buildingDataList = new List<BuildingData>();
+        private List<BuildingData> _buildingDataList = new List<BuildingData>();
 
         private Dictionary<BuildingType, ObjectPool<BaseBuilding>> _buildingPoolList = new Dictionary<BuildingType, ObjectPool<BaseBuilding>>();
 
-        public void Initialize()
+        public void Initialize(List<BuildingData> buildingDataList)
         {
+            _buildingDataList = buildingDataList;
+            
             // Initializes the building pool for each building data in the list.
             foreach (BuildingData buildingData in _buildingDataList)
             {

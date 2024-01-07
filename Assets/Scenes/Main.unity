@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c576366c49ba249bddd5c2f84af9af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _militaryGameData: {fileID: 11400000, guid: 3fbef4652d0cc68439b8e87a032f977a, type: 2}
   _productMenuController: {fileID: 229402694}
   _informationPanelController: {fileID: 1205011264}
 --- !u!4 &96320379
@@ -4590,11 +4591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d6b6c8aaa86254081ccfd84b903314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingDataList:
-  - {fileID: 11400000, guid: 696eb94c76b57a648bc75b612c8d3cee, type: 2}
-  - {fileID: 11400000, guid: 34163bf4a33af924289e098463ead61b, type: 2}
-  - {fileID: 11400000, guid: a50f0679cb9428a419b5338e3db557b7, type: 2}
-  - {fileID: 11400000, guid: 1bdd3bbf7e6efef488e35b56e45fab59, type: 2}
   _buildingSlotButtonPref: {fileID: 2562189285490587674, guid: adbfc67b28330f24abac517ef9fb73af, type: 3}
   _contentParent: {fileID: 1157499723}
 --- !u!1 &333728067
@@ -8777,11 +8773,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buildingCount: 10
-  _buildingDataList:
-  - {fileID: 11400000, guid: 696eb94c76b57a648bc75b612c8d3cee, type: 2}
-  - {fileID: 11400000, guid: 34163bf4a33af924289e098463ead61b, type: 2}
-  - {fileID: 11400000, guid: a50f0679cb9428a419b5338e3db557b7, type: 2}
-  - {fileID: 11400000, guid: 1bdd3bbf7e6efef488e35b56e45fab59, type: 2}
 --- !u!4 &1340414846
 Transform:
   m_ObjectHideFlags: 0
@@ -9192,10 +9183,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soldierCount: 10
-  _soldierDataList:
-  - {fileID: 11400000, guid: 7422e5db25bcfad469b305e420ddbe70, type: 2}
-  - {fileID: 11400000, guid: 46015bf24df50af4bb53f5e6834f5e1a, type: 2}
-  - {fileID: 11400000, guid: f32d2cda0fa3bf24e9c0f78e14344af8, type: 2}
 --- !u!4 &1751811223
 Transform:
   m_ObjectHideFlags: 0

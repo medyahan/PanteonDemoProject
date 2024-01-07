@@ -10,13 +10,14 @@ namespace MilitaryGame.Factory
         [Header("SOLDIER COUNT")]
         [SerializeField] private int _soldierCount;
 
-        [Header("SOLDIER DATA LIST")]
-        [SerializeField] private List<SoldierData> _soldierDataList = new List<SoldierData>();
+        private List<SoldierData> _soldierDataList = new List<SoldierData>();
 
         private Dictionary<SoldierType, ObjectPool<Soldier.Soldier>> _soldierPoolList = new Dictionary<SoldierData.SoldierType, ObjectPool<Soldier.Soldier>>();
 
-        public void Initialize()
+        public void Initialize(List<SoldierData> soldierDataList)
         {
+            _soldierDataList = soldierDataList;
+            
             // Initializes the soldier pool for each soldier data in the list.
             foreach (SoldierData soldierData in _soldierDataList)
             {

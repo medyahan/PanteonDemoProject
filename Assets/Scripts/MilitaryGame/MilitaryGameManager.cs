@@ -1,4 +1,5 @@
 using Core;
+using Data.MilitaryGame;
 using Interfaces.MilitaryGame;
 using MilitaryGame.Building;
 using MilitaryGame.Factory;
@@ -10,6 +11,8 @@ namespace MilitaryGame
     public class MilitaryGameManager : BaseMonoBehaviour
     {
         #region Variable Fields
+
+        [SerializeField] private MilitaryGameData _militaryGameData;
     
         [Header("UI CONTROLLERS")]
         [SerializeField] private ProductMenuController _productMenuController;
@@ -23,11 +26,11 @@ namespace MilitaryGame
         {
             base.Initialize(list);
         
-            _productMenuController.Initialize();
+            _productMenuController.Initialize(_militaryGameData.BuildingDataList);
             _informationPanelController.Initialize();
         
-            SoldierFactory.Instance.Initialize();
-            BuildingFactory.Instance.Initialize();
+            SoldierFactory.Instance.Initialize(_militaryGameData.SoldierDataList);
+            BuildingFactory.Instance.Initialize(_militaryGameData.BuildingDataList);
         }
 
         public override void RegisterEvents()

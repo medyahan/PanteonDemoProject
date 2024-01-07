@@ -8,9 +8,7 @@ namespace MilitaryGame.UI.ProductionMenu
     public class ProductMenuController : BaseMonoBehaviour
     {
         #region Variable Fields
-    
-        [SerializeField] private List<BuildingData> _buildingDataList;
-    
+        
         [Header("BUILDING SLOT")]
         [SerializeField] private BuildingSlotButton _buildingSlotButtonPref;
         [SerializeField] private Transform _contentParent;
@@ -18,12 +16,15 @@ namespace MilitaryGame.UI.ProductionMenu
         private List<BuildingSlotButton> _buildingSlotButtonList = new List<BuildingSlotButton>();
         private bool _isMenuOpen;
 
+        private List<BuildingData> _buildingDataList = new List<BuildingData>();
+        
         #endregion // Variable Fields
     
         public override void Initialize(params object[] list)
         {
             base.Initialize(list);
 
+            _buildingDataList = (List<BuildingData>) list[0];
             CreateProductSlotButtons();
         }
     
