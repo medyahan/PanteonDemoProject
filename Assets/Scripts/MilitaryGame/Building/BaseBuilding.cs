@@ -21,11 +21,13 @@ namespace MilitaryGame.Building
             set => _area = value;
         }
         public BuildingData BuildingData => _buildingData;
+        private float _currentHealthPoint;
 
         public override void Initialize(params object[] list)
         {
             base.Initialize(list);
-            
+
+            _currentHealthPoint = _buildingData.HealthPoint;
             ActivateHealthBar();
         }
         
@@ -43,10 +45,14 @@ namespace MilitaryGame.Building
         private void ActivateHealthBar()
         {
             _healthBar.gameObject.SetActive(true);
-            _healthBar.Initialize((float)_buildingData.HealthPoint);
+            _healthBar.Initialize(_currentHealthPoint);
         }
-        
-        public void TakeDamage(int damage) { }
+
+        public void TakeDamage(int damage)
+        {
+            _currentHealthPoint -= damage;
+            _healthBar.SetHealthBar(_currentHealthPoint);
+        }
 
         #region CLICK METHODS
 

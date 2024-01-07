@@ -94,6 +94,7 @@ namespace MilitaryGame.Pathfinder
         private bool IsWalkable(Vector3Int position)
         {
             TileBase tile = _tilemap.GetTile(position);
+            Debug.Log("white: " + (tile == _whiteTile));
             return tile == _whiteTile; 
         }
 
@@ -104,6 +105,8 @@ namespace MilitaryGame.Pathfinder
             neighbors.Add(new Vector3Int(position.x - 1, position.y, position.z));
             neighbors.Add(new Vector3Int(position.x, position.y + 1, position.z));
             neighbors.Add(new Vector3Int(position.x, position.y - 1, position.z));
+            
+            Debug.Log("komşu sayıs: " + neighbors.Count);
             return neighbors;
         }
     }

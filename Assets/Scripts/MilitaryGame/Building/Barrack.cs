@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using MilitaryGame.Factory;
+using MilitaryGame.GridBuilding;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using SoldierType = SoldierData.SoldierType;
 
 namespace MilitaryGame.Building
@@ -20,7 +22,9 @@ namespace MilitaryGame.Building
         public void ProduceSoldier(SoldierType soldierType)
         {
             Soldier.Soldier soldier = SoldierFactory.Instance.CreateSoldier(soldierType, Vector3.zero, Quaternion.identity);
-            soldier.transform.position = _soldierSpawnPoint.position;
+            Tilemap mainTilemap = GridBuildingSystem.Instance.MainTilemap;
+            Vector3Int soldierSpawnPos = mainTilemap.WorldToCell(_soldierSpawnPoint.position);
+            soldier.transform.position = soldierSpawnPos;
             soldier.Initialize();
             
             _soldierList.Add(soldier);
