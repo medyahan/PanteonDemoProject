@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Data.MilitaryGame;
 using MilitaryGame.Building;
 using UnityEngine;
-using BuildingType = BuildingData.BuildingType;
+using BuildingType = Data.MilitaryGame.BuildingData.BuildingType;
 
 namespace MilitaryGame.Factory
 {

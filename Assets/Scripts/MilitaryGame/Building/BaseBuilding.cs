@@ -1,4 +1,5 @@
 using Core;
+using Data.MilitaryGame;
 using Interfaces.MilitaryGame;
 using MilitaryGame.GridBuilding;
 using MilitaryGame.UI.HealthBar;
@@ -8,21 +9,22 @@ namespace MilitaryGame.Building
 {
     public class BaseBuilding : BaseMonoBehaviour, ILeftClickable, IDamageable, IRightClickable
     {
+        #region Variable Fields
+        
         [SerializeField] private protected BuildingData _buildingData;
         [SerializeField] private BoundsInt _area;
 
         [Header("HEALTH BAR")] 
         [SerializeField] protected HealthBar _healthBar;
 
-        public bool Placed { get; protected set; }
-        public BoundsInt Area
-        {
-            get => _area;
-            set => _area = value;
-        }
-        public BuildingData BuildingData => _buildingData;
         private float _currentHealthPoint;
-
+        
+        public bool Placed { get; private set; }
+        public BoundsInt Area => _area;
+        public BuildingData BuildingData => _buildingData;
+        
+        #endregion // Variable Fields
+        
         public override void Initialize(params object[] list)
         {
             base.Initialize(list);
@@ -69,12 +71,12 @@ namespace MilitaryGame.Building
         public void OnLeftClick()
         {
             if(!Placed) return;
-            
             MilitaryGameEventLib.Instance.ShowBuildingInfo?.Invoke(this);
         }
 
         public void OnRightClick()
         {
+            if(!Placed) return;
             MilitaryGameEventLib.Instance.SetDamageableObject?.Invoke(this);
         }
 

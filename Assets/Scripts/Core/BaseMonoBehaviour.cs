@@ -4,9 +4,14 @@ namespace Core
 {
     public class BaseMonoBehaviour : MonoBehaviour
     {
+        private bool _isInitialize;
+        
         public virtual void Initialize(params object[] list) 
         {
-            RegisterEvents();
+            if(!_isInitialize)
+                RegisterEvents();
+
+            _isInitialize = true;
         }
 
         public virtual void RegisterEvents() { }
@@ -15,6 +20,7 @@ namespace Core
 
         public virtual void End() 
         {
+            _isInitialize = false;
             UnregisterEvents();
         }
     }

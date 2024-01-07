@@ -3,7 +3,7 @@ using MilitaryGame.Factory;
 using MilitaryGame.GridBuilding;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using SoldierType = SoldierData.SoldierType;
+using SoldierType = Data.MilitaryGame.SoldierData.SoldierType;
 
 namespace MilitaryGame.Building
 {

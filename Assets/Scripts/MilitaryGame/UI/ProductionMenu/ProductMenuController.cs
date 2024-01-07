@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Core;
+using Data.MilitaryGame;
 using UnityEngine;
 
 namespace MilitaryGame.UI.ProductionMenu

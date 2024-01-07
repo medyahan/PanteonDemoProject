@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Ordinary
   Type: 0
-  Icon: {fileID: 3098120383400218920, guid: 6f9441bd93ab896438a93542cea44fb6, type: 3}
+  Icon: {fileID: 2305144062599850415, guid: 220d39c4bfd8a5f43897c04e5a02c406, type: 3}
   HealthPoint: 10
   DamagePoint: 2
   Prefab: {fileID: 1449954546977678074, guid: b0694f93e5123da47ba49b979dca19bd, type: 3}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Data.MilitaryGame;
 using MilitaryGame.Building;
 using MilitaryGame.Factory;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace MilitaryGame.GridBuilding
         [SerializeField] private Tilemap _tempTilemap;
 
         [Header("TILE BASES")]
-        [SerializeField] private TileBase _whiteTileBase;
+        [SerializeField] private TileBase _groundTileBase;
         [SerializeField] private TileBase _greenTileBase;
         [SerializeField] private TileBase _redTileBase;
         [SerializeField] private TileBase _fillTileBase;
@@ -44,7 +45,7 @@ namespace MilitaryGame.GridBuilding
         private void Start()
         {
             _tileBases.Add(TileType.Empty, null);
-            _tileBases.Add(TileType.White, _whiteTileBase);
+            _tileBases.Add(TileType.Ground, _groundTileBase);
             _tileBases.Add(TileType.Green, _greenTileBase);
             _tileBases.Add(TileType.Red, _redTileBase);
             _tileBases.Add(TileType.Fill, _fillTileBase);
@@ -180,7 +181,7 @@ namespace MilitaryGame.GridBuilding
             // Check each tile in the base area and update the temporary tilemap accordingly.   
             for (int i = 0; i < baseArray.Length; i++)
             {
-                if (baseArray[i] == _tileBases[TileType.White])
+                if (baseArray[i] == _tileBases[TileType.Ground])
                 {
                     tileArray[i] = _tileBases[TileType.Green];
                 }
@@ -208,7 +209,7 @@ namespace MilitaryGame.GridBuilding
 
             foreach (TileBase tileBase in baseArray)
             {
-                if (tileBase != _tileBases[TileType.White])
+                if (tileBase != _tileBases[TileType.Ground])
                 {
                     return false;
                 }
@@ -254,11 +255,11 @@ namespace MilitaryGame.GridBuilding
             {
                 if (baseArray[i] == _tileBases[TileType.Fill])
                 {
-                    tileArray[i] = _tileBases[TileType.White];
+                    tileArray[i] = _tileBases[TileType.Ground];
                 }
             }
             
-            SetTilesBlock(placedBuildingArea, TileType.White, _mainTilemap);
+            SetTilesBlock(placedBuildingArea, TileType.Ground, _mainTilemap);
             ClearArea();
         }
 
@@ -283,7 +284,7 @@ namespace MilitaryGame.GridBuilding
     public enum TileType
     {
         Empty,
-        White,
+        Ground,
         Green,
         Red,
         Fill

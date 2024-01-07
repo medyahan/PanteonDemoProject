@@ -1,6 +1,7 @@
-using MilitaryGame.Building;
-
-public class PowerPlant : BaseBuilding
+namespace MilitaryGame.Building
 {
+    public class PowerPlant : BaseBuilding
+    {
     
+    }
 }

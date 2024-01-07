@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Data.MilitaryGame;
 using UnityEngine;
-using SoldierType = SoldierData.SoldierType;
+using SoldierType = Data.MilitaryGame.SoldierData.SoldierType;
 
 namespace MilitaryGame.Factory
 {

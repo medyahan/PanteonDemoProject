@@ -59,8 +59,6 @@ namespace MilitaryGame
 
         public override void End()
         {
-            MilitaryGameEventLib.Instance.OnDestroy();
-            
             base.End();
         
             _productMenuController.End();

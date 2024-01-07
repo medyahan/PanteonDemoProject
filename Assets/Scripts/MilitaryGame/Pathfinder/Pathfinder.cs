@@ -6,8 +6,8 @@ namespace MilitaryGame.Pathfinder
 {
     public class Pathfinder : Singleton<Pathfinder>
     {
-        [SerializeField] private Tilemap _tilemap;
-        [SerializeField] private TileBase _whiteTile;
+        [SerializeField] private Tilemap _mainTilemap;
+        [SerializeField] private TileBase _groundTileBase;
 
         // A* pathfinding 
         public List<Vector3Int> FindPath(Vector3Int start, Vector3Int end)
@@ -93,8 +93,8 @@ namespace MilitaryGame.Pathfinder
 
         private bool IsWalkable(Vector3Int position)
         {
-            TileBase tile = _tilemap.GetTile(position);
-            return tile == _whiteTile; 
+            TileBase tile = _mainTilemap.GetTile(position);
+            return tile == _groundTileBase; 
         }
 
         private List<Vector3Int> GetNeighbors(Vector3Int position)

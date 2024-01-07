@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Core;
+using Data.MilitaryGame;
 using MilitaryGame.Building;
 using MilitaryGame.UI.InformationPanel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using BuildingType = BuildingData.BuildingType;
+using BuildingType = Data.MilitaryGame.BuildingData.BuildingType;
 
 public class InformationPanelController : BaseMonoBehaviour
 {

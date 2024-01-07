@@ -1,4 +1,5 @@
 using Core;
+using Data.MilitaryGame;
 using MilitaryGame.Building;
 using TMPro;
 using UnityEngine;

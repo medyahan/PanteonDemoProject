@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Core;
+using Data.MilitaryGame;
 using DG.Tweening;
 using Interfaces.MilitaryGame;
-using MilitaryGame.Building;
 using MilitaryGame.Factory;
 using MilitaryGame.GridBuilding;
 using MilitaryGame.UI.HealthBar;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Tilemaps;
 
 namespace MilitaryGame.Soldier
 {
@@ -19,6 +17,11 @@ namespace MilitaryGame.Soldier
 
         [SerializeField] private SoldierData _soldierData;
         [SerializeField] private HealthBar _healthBar;
+
+        [Header("MOVEMENT")]
+        [SerializeField] private float _moveDuration;
+        
+        [Header("INDICATOR")]
         [SerializeField] private GameObject _selectedIndicatorObj;
 
         public SoldierData SoldierData => _soldierData;
@@ -65,6 +68,8 @@ namespace MilitaryGame.Soldier
             }
         }
 
+        #region MOVEMENT TRANSACTIONS
+        
         private void Move()
         {
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -89,11 +94,15 @@ namespace MilitaryGame.Soldier
             while (path.Count > 0 && index < path.Count)
             {
                 Vector3 targetWorldPos = GridBuildingSystem.Instance.MainTilemap.GetCellCenterWorld(path[index]);
-                transform.DOMove(targetWorldPos, .2f);
+                transform.DOMove(targetWorldPos, _moveDuration);
                 index++;
-                yield return new WaitForSeconds(.2f);
+                yield return new WaitForSeconds(_moveDuration);
             }
         }
+        
+        #endregion
+
+        #region DAMAGE TRANSACTIONS
         
         public bool IsAlive()
         {
@@ -111,6 +120,7 @@ namespace MilitaryGame.Soldier
                 SoldierFactory.Instance.DestroySoldier(this);
             }
         }
+        #endregion
         
         #region CLICK METHODS
         

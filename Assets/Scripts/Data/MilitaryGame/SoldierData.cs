@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using MilitaryGame.Soldier;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SoldierData", menuName = "Data/SoldierData")]
-public class SoldierData : ScriptableObject
+namespace Data.MilitaryGame
 {
-    public string Name;
-    public SoldierType Type;
-    public Sprite Icon;
-    public int HealthPoint;
-    public int DamagePoint;
-    public Soldier Prefab;
-    
-    public enum SoldierType
+    [CreateAssetMenu(fileName = "SoldierData", menuName = "Data/SoldierData")]
+    public class SoldierData : ScriptableObject
     {
-        Ordinary,
-        General,
-        Helmet
+        public string Name;
+        public SoldierType Type;
+        public Sprite Icon;
+        public int HealthPoint;
+        public int DamagePoint;
+        public Soldier Prefab;
+    
+        public enum SoldierType
+        {
+            Ordinary,
+            General,
+            Helmet
+        }
     }
 }
