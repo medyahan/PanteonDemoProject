@@ -11,7 +11,7 @@ namespace MilitaryGame.UI.InformationPanel
         [SerializeField] private Button _produceButton;
         [SerializeField] private Image _soldierIconImage;
         [SerializeField] private TMP_Text _soldierNameText;
-        [SerializeField] private TMP_Text _soldierAttackText;
+        [SerializeField] private TMP_Text _soldierInfoText;
 
         private SoldierData _soldierData;
         private Barrack _barrack;
@@ -34,7 +34,7 @@ namespace MilitaryGame.UI.InformationPanel
         {
             _soldierIconImage.sprite = soldierData.Icon;
             _soldierNameText.text = soldierData.Name;
-            _soldierAttackText.text = "Att: " + soldierData.DamagePoint;
+            _soldierInfoText.text = $"Att: {soldierData.DamagePoint} / Hp: {soldierData.HealthPoint}" ;
         }
     
         private void OnClickProduceButton()

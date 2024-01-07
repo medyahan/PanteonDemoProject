@@ -1,4 +1,5 @@
 using Core;
+using Interfaces.MilitaryGame;
 using MilitaryGame.Building;
 using MilitaryGame.Factory;
 using MilitaryGame.UI.ProductionMenu;
@@ -14,8 +15,7 @@ namespace MilitaryGame
         [SerializeField] private ProductMenuController _productMenuController;
         [SerializeField] private InformationPanelController _informationPanelController;
 
-        private Soldier.Soldier _selectedSoldier;
-        private BaseBuilding _selectedBuilding;
+        private IDamageable _currenDamageableObject;
 
         #endregion // Variable Fields
     
@@ -34,27 +34,27 @@ namespace MilitaryGame
         {
             MilitaryGameEventLib.Instance.ShowBuildingInfo += _informationPanelController.ShowBuildingInfo;
             MilitaryGameEventLib.Instance.CloseInformationPanel += _informationPanelController.Close;
-            MilitaryGameEventLib.Instance.SetSelectedBuildingForAttack += OnSetSelectedBuildingForAttack;
-            MilitaryGameEventLib.Instance.GetSelectedBuildingForAttack += OnGetSelectedBuildingForAttack;
+            MilitaryGameEventLib.Instance.SetDamageableObject += OnSetDamageableObject;
+            MilitaryGameEventLib.Instance.GetCurrentDamageableObject += OnGetCurrentDamageableObject;
         }
 
         public override void UnregisterEvents()
         {
             MilitaryGameEventLib.Instance.ShowBuildingInfo -= _informationPanelController.ShowBuildingInfo;
             MilitaryGameEventLib.Instance.CloseInformationPanel -= _informationPanelController.Close;
-            MilitaryGameEventLib.Instance.SetSelectedBuildingForAttack -= OnSetSelectedBuildingForAttack;
-            MilitaryGameEventLib.Instance.GetSelectedBuildingForAttack -= OnGetSelectedBuildingForAttack;
+            MilitaryGameEventLib.Instance.SetDamageableObject -= OnSetDamageableObject;
+            MilitaryGameEventLib.Instance.GetCurrentDamageableObject -= OnGetCurrentDamageableObject;
 
         }
 
-        private BaseBuilding OnGetSelectedBuildingForAttack()
+        private IDamageable OnGetCurrentDamageableObject()
         {
-            return _selectedBuilding;
+            return _currenDamageableObject;
         }
 
-        private void OnSetSelectedBuildingForAttack(BaseBuilding building)
+        private void OnSetDamageableObject(IDamageable damageableObject)
         {
-            _selectedBuilding = building;
+            _currenDamageableObject = damageableObject;
         }
 
         public override void End()

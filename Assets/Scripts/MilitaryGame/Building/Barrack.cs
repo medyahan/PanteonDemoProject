@@ -12,8 +12,6 @@ namespace MilitaryGame.Building
         [Header("SOLDIER SPAWN")] 
         [SerializeField] private Transform _soldierSpawnPoint;
 
-        private List<Soldier.Soldier> _soldierList = new List<Soldier.Soldier>();
-        
         /// <summary>
         /// Produces a soldier of the specified type, places it at the designated spawn point,
         /// initializes it, and adds it to the list of active soldiers.
@@ -26,13 +24,6 @@ namespace MilitaryGame.Building
             Vector3Int soldierSpawnPos = mainTilemap.WorldToCell(_soldierSpawnPoint.position);
             soldier.transform.position = soldierSpawnPos;
             soldier.Initialize();
-            
-            _soldierList.Add(soldier);
-        }
-        
-        public override void End()
-        {
-            base.End();
         }
     }
 }

@@ -4,6 +4,7 @@ using Core;
 using DG.Tweening;
 using Interfaces.MilitaryGame;
 using MilitaryGame.Building;
+using MilitaryGame.Factory;
 using MilitaryGame.GridBuilding;
 using MilitaryGame.UI.HealthBar;
 using UnityEngine;
@@ -18,70 +19,100 @@ namespace MilitaryGame.Soldier
 
         [SerializeField] private SoldierData _soldierData;
         [SerializeField] private HealthBar _healthBar;
-        [SerializeField] private GameObject _selectedObj;
+        [SerializeField] private GameObject _selectedIndicatorObj;
 
         public SoldierData SoldierData => _soldierData;
-
-        private Tilemap _tilemap;
-        private Vector3Int _targetPosition;
-
+        
+        private float _currentHealthPoint;
+        public bool IsAttacking { get; set; }
+        
         private bool _isSelected;
-
         public bool IsSelected
         {
             get => _isSelected;
             set
             {
                 _isSelected = value;
-                _selectedObj.SetActive(value);
+                _selectedIndicatorObj.SetActive(value);
             }
         }
-
-        private float _currentHealthPoint;
-        public bool IsAttacking { get; set; }
-
-        private BaseBuilding _building;
 
         #endregion // Variable Fields
 
         public override void Initialize(params object[] list)
         {
             base.Initialize(list);
+            
             _currentHealthPoint = _soldierData.HealthPoint;
             _healthBar.Initialize(_currentHealthPoint);
-            _tilemap = GridBuildingSystem.Instance.MainTilemap;
         }
 
         private void Update()
         {
-            if (!IsSelected) return;
+            if (!IsSelected || IsAttacking) return;
 
             if (Input.GetMouseButtonDown(1))
             {
+                IDamageable damageableObject = MilitaryGameEventLib.Instance.GetCurrentDamageableObject?.Invoke();
                 
-                // BaseBuilding building = MilitaryGameEventLib.Instance.GetSelectedBuildingForAttack?.Invoke();
-                //
-                // if (building != null)
-                // {
-                //     Attack(building);
-                // }
+                if (damageableObject != null)
+                {
+                    Attack(damageableObject);
+                    MilitaryGameEventLib.Instance.SetDamageableObject?.Invoke(null);
+                }
+                IsSelected = false;
                 Move();
             }
         }
 
         private void Move()
         {
-            IsSelected = false;
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0;
 
-            Vector3Int startCellPos = _tilemap.WorldToCell(transform.position);
-            Vector3Int endCellPos = _tilemap.WorldToCell(mouseWorldPos);
+            Vector3Int startCellPos = GridBuildingSystem.Instance.MainTilemap.WorldToCell(transform.position);
+            Vector3Int endCellPos = GridBuildingSystem.Instance.MainTilemap.WorldToCell(mouseWorldPos);
 
             // Find a path from the current position to the target position and move along the path.
             List<Vector3Int> path = Pathfinder.Pathfinder.Instance.FindPath(startCellPos, endCellPos);
-            StartCoroutine(MoveOnPath(path));
+            StartCoroutine(MoveOnPathCoroutine(path));
         }
+        
+        /// <summary>
+        /// Moves the agent along the specified path.
+        /// </summary>
+        /// <param name="path">The list of cell positions representing the path.</param>
+        private IEnumerator MoveOnPathCoroutine(List<Vector3Int> path)
+        {
+            int index = 0;
+            
+            while (path.Count > 0 && index < path.Count)
+            {
+                Vector3 targetWorldPos = GridBuildingSystem.Instance.MainTilemap.GetCellCenterWorld(path[index]);
+                transform.DOMove(targetWorldPos, .2f);
+                index++;
+                yield return new WaitForSeconds(.2f);
+            }
+        }
+        
+        public bool IsAlive()
+        {
+            return _currentHealthPoint > 0;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            _currentHealthPoint -= damage;
+            _healthBar.SetHealthBar(_currentHealthPoint);
+            
+            if (!IsAlive())
+            {
+                End();
+                SoldierFactory.Instance.DestroySoldier(this);
+            }
+        }
+        
+        #region CLICK METHODS
         
         public void OnLeftClick()
         {
@@ -93,16 +124,14 @@ namespace MilitaryGame.Soldier
         {
             if (!IsSelected)
             {
-                // bu asker hasar görecek
+                MilitaryGameEventLib.Instance.SetDamageableObject?.Invoke(this);
             }
         }
+        
+        #endregion
 
-        public void TakeDamage(int damage)
-        {
-            _currentHealthPoint -= damage;
-            _healthBar.SetHealthBar(_currentHealthPoint);
-        }
-
+        #region ATTACK METHODS
+        
         public void Attack(IDamageable damageableObject)
         {
             IsAttacking = true;
@@ -111,7 +140,7 @@ namespace MilitaryGame.Soldier
 
         private IEnumerator AttackCoroutine(IDamageable damageableObject)
         {
-            while (damageableObject != null)
+            while (damageableObject.IsAlive())
             {
                 damageableObject.TakeDamage(_soldierData.DamagePoint);
                 yield return new WaitForSeconds(1f);
@@ -120,26 +149,13 @@ namespace MilitaryGame.Soldier
             IsAttacking = false;
         }
 
-        /// <summary>
-        /// Moves the agent along the specified path.
-        /// </summary>
-        /// <param name="path">The list of cell positions representing the path.</param>
-        private IEnumerator MoveOnPath(List<Vector3Int> path)
-        {
-            int index = 0;
-            while (path.Count > 0 && index < path.Count)
-            {
-                Vector3 targetWorldPos = _tilemap.GetCellCenterWorld(path[index]);
-                transform.DOMove(targetWorldPos, .2f);
-                index++;
-                yield return new WaitForSeconds(.2f);
-            }
-        }
+        #endregion
         
         public override void End()
         {
             base.End();
             IsSelected = false;
+            IsAttacking = false;
         }
     }
 }

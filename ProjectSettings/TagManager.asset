@@ -48,3 +48,6 @@ TagManager:
   - name: Product
     uniqueID: 3592750735
     locked: 0
+  - name: Soldier
+    uniqueID: 104463325
+    locked: 0

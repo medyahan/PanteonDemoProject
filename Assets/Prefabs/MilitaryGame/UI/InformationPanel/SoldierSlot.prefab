@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 11.174}
+  m_AnchoredPosition: {x: 0, y: -14.174}
   m_SizeDelta: {x: 0, y: 28.348}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7717374934260341019
@@ -93,13 +93,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.35
+  m_fontSize: 23.15
   m_fontSizeBase: 17.96
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 10.5
   m_fontSizeMax: 60.7
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 6696129799737283522}
   - component: {fileID: 2224935691714528949}
   m_Layer: 5
-  m_Name: ui_text_soldier_attack
+  m_Name: ui_text_soldier_info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,11 +168,11 @@ RectTransform:
   m_Father: {fileID: 7081045389119785050}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 39.890114}
-  m_SizeDelta: {x: 59.4513, y: 24.9282}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -120.7359}
+  m_SizeDelta: {x: 100, y: 24.928192}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6696129799737283522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Att: 20'
+  m_text: 'Att: 20 Hp: 20'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -228,13 +228,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.9
+  m_fontSize: 16.05
   m_fontSizeBase: 17.96
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 10.5
   m_fontSizeMax: 60.7
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0.5411682, y: 0, z: 1.082325, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -440,8 +440,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: -75}
+  m_SizeDelta: {x: 61.3046, y: 91.9569}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7081045389041412082
 CanvasRenderer:
@@ -471,9 +471,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dcea51d6065d64246aeec467afeff684, type: 3}
+  m_Sprite: {fileID: 2305144062599850415, guid: 220d39c4bfd8a5f43897c04e5a02c406, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -520,8 +520,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 140.3149}
+  m_AnchoredPosition: {x: 0, y: 7.5762}
+  m_SizeDelta: {x: 100, y: 176.0317}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7081045389119785048
 CanvasRenderer:
@@ -546,7 +546,7 @@ MonoBehaviour:
   _produceButton: {fileID: 7081045389593175762}
   _soldierIconImage: {fileID: 7081045389041412083}
   _soldierNameText: {fileID: 190443766819628586}
-  _soldierAttackText: {fileID: 2224935691714528949}
+  _soldierInfoText: {fileID: 2224935691714528949}
 --- !u!1 &7081045389593175772
 GameObject:
   m_ObjectHideFlags: 0

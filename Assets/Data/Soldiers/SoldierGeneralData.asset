@@ -17,4 +17,4 @@ MonoBehaviour:
   Icon: {fileID: -5752517562782114829, guid: 2fd54fa2442f30242b3cb22da9e6b0be, type: 3}
   HealthPoint: 10
   DamagePoint: 10
-  Prefab: {fileID: 8683133912674171608, guid: 3f342161fd81307439ae403e7fbe32ae, type: 3}
+  Prefab: {fileID: 1858887387415594520, guid: 1a95c560057797c49aa194b14bc8bebb, type: 3}

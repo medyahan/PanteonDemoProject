@@ -48,12 +48,17 @@ namespace MilitaryGame.Building
             _healthBar.Initialize(_currentHealthPoint);
         }
 
+        public bool IsAlive()
+        {
+            return _currentHealthPoint > 0;
+        }
+
         public void TakeDamage(int damage)
         {
             _currentHealthPoint -= damage;
             _healthBar.SetHealthBar(_currentHealthPoint);
             
-            if (_currentHealthPoint <= 0)
+            if (!IsAlive())
             {
                 GridBuildingSystem.Instance.ClearPlacedBuilding(this);
             }
@@ -70,7 +75,7 @@ namespace MilitaryGame.Building
 
         public void OnRightClick()
         {
-            MilitaryGameEventLib.Instance.SetSelectedBuildingForAttack?.Invoke(this);
+            MilitaryGameEventLib.Instance.SetDamageableObject?.Invoke(this);
         }
 
         #endregion

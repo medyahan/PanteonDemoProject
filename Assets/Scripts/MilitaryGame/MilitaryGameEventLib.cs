@@ -1,4 +1,5 @@
 using System;
+using Interfaces.MilitaryGame;
 using MilitaryGame.Building;
 
 namespace MilitaryGame
@@ -7,8 +8,8 @@ namespace MilitaryGame
     {
         public Action<BaseBuilding> ShowBuildingInfo;
         public Action CloseInformationPanel;
-        public Action<BaseBuilding> SetSelectedBuildingForAttack;
-        public Func<BaseBuilding> GetSelectedBuildingForAttack;
+        public Action<IDamageable> SetDamageableObject;
+        public Func<IDamageable> GetCurrentDamageableObject;
 
         protected override void Awake()
         {
@@ -20,8 +21,8 @@ namespace MilitaryGame
         {
             ShowBuildingInfo = null;
             CloseInformationPanel = null;
-            SetSelectedBuildingForAttack = null;
-            GetSelectedBuildingForAttack = null;
+            SetDamageableObject = null;
+            GetCurrentDamageableObject = null;
         }
     }
 }
