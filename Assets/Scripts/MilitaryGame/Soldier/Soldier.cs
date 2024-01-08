@@ -30,7 +30,6 @@ namespace MilitaryGame.Soldier
         public bool IsAttacking { get; set; }
         
         private bool _isSelected;
-        private static readonly int Animate = Animator.StringToHash("Animate");
 
         public bool IsSelected
         {
