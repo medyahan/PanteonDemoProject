@@ -30,6 +30,8 @@ namespace MilitaryGame.Soldier
         public bool IsAttacking { get; set; }
         
         private bool _isSelected;
+        private static readonly int Animate = Animator.StringToHash("Animate");
+
         public bool IsSelected
         {
             get => _isSelected;
@@ -135,6 +137,7 @@ namespace MilitaryGame.Soldier
             while (path.Count > 0 && index < path.Count && IsAlive())
             {
                 Vector3 targetWorldPos = GridBuildingSystem.Instance.MainTilemap.GetCellCenterWorld(path[index]);
+                
                 transform.DOMove(targetWorldPos, _moveDuration);
                 index++;
 

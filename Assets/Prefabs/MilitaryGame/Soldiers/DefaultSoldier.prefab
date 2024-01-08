@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soldierData: {fileID: 11400000, guid: 46015bf24df50af4bb53f5e6834f5e1a, type: 2}
   _healthBar: {fileID: 8107771106965417189}
+  _animator: {fileID: 1448066901106251596}
   _moveDuration: 0.2
   _selectedIndicatorObj: {fileID: 1433137872920691800}
 --- !u!212 &1448066901106251597

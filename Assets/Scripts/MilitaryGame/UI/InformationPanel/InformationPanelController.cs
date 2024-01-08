@@ -43,7 +43,8 @@ public class InformationPanelController : BaseMonoBehaviour
 
     private void Open()
     {
-        _mainPanel.SetActive(true);
+        if(!_mainPanel.activeSelf)
+            _mainPanel.SetActive(true);
     }
     
     public void Close()

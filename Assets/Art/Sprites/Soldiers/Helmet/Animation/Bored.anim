@@ -20,32 +20,23 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 309628545801974608, guid: 564fedabfe62bd5439a41debe47e7d9a,
-        type: 3}
+      value: {fileID: 309628545801974608, guid: 564fedabfe62bd5439a41debe47e7d9a, type: 3}
     - time: 0.1
-      value: {fileID: 5959245894377671268, guid: 017d17958355de340aad51d38a524322,
-        type: 3}
+      value: {fileID: 5959245894377671268, guid: 017d17958355de340aad51d38a524322, type: 3}
     - time: 0.2
-      value: {fileID: -4820478939686088993, guid: 017d17958355de340aad51d38a524322,
-        type: 3}
+      value: {fileID: -4820478939686088993, guid: 017d17958355de340aad51d38a524322, type: 3}
     - time: 0.3
-      value: {fileID: -8413811252070700473, guid: 017d17958355de340aad51d38a524322,
-        type: 3}
+      value: {fileID: -8413811252070700473, guid: 017d17958355de340aad51d38a524322, type: 3}
     - time: 1.7
-      value: {fileID: -8413811252070700473, guid: 017d17958355de340aad51d38a524322,
-        type: 3}
+      value: {fileID: -8413811252070700473, guid: 017d17958355de340aad51d38a524322, type: 3}
     - time: 1.8
-      value: {fileID: -6186841213084988680, guid: 017d17958355de340aad51d38a524322,
-        type: 3}
+      value: {fileID: -6186841213084988680, guid: 017d17958355de340aad51d38a524322, type: 3}
     - time: 1.9
-      value: {fileID: 6723500584860299761, guid: 017d17958355de340aad51d38a524322,
-        type: 3}
+      value: {fileID: 6723500584860299761, guid: 017d17958355de340aad51d38a524322, type: 3}
     - time: 2
-      value: {fileID: 309628545801974608, guid: 564fedabfe62bd5439a41debe47e7d9a,
-        type: 3}
+      value: {fileID: 309628545801974608, guid: 564fedabfe62bd5439a41debe47e7d9a, type: 3}
     - time: 2.3333333
-      value: {fileID: 309628545801974608, guid: 564fedabfe62bd5439a41debe47e7d9a,
-        type: 3}
+      value: {fileID: 309628545801974608, guid: 564fedabfe62bd5439a41debe47e7d9a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -84,7 +75,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
