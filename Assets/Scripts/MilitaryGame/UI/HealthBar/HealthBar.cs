@@ -10,6 +10,8 @@ namespace MilitaryGame.UI.HealthBar
     {
         [SerializeField] private Image _fillImage;
         [SerializeField] private TMP_Text _healtValueText;
+        
+        [Header("VALUES")]
         [SerializeField] private float _fillDuration;
 
         private float _maxValue;
@@ -19,7 +21,6 @@ namespace MilitaryGame.UI.HealthBar
             base.Initialize(list);
 
             _maxValue = (float) list[0];
-        
             SetHealthBar(_maxValue);
         }
 

@@ -1,6 +1,6 @@
 using Core;
 using Data.MilitaryGame;
-using Interfaces.MilitaryGame;
+using Interface;
 using MilitaryGame.GridBuilding;
 using MilitaryGame.UI.HealthBar;
 using UnityEngine;
@@ -42,7 +42,7 @@ namespace MilitaryGame.Building
         }
 
         /// <summary>
-        /// Activates the health bar, initializing it with the building's maximum health points.
+        /// Activates the health bar and initializes it with the current health point.
         /// </summary>
         private void ActivateHealthBar()
         {
@@ -50,11 +50,17 @@ namespace MilitaryGame.Building
             _healthBar.Initialize(_currentHealthPoint);
         }
 
+        #region DAMAGE TRANSACTIONS
+
         public bool IsAlive()
         {
             return _currentHealthPoint > 0;
         }
 
+        /// <summary>
+        /// Applies damage to the building, updates health bar, and handles destruction if health reaches zero.
+        /// </summary>
+        /// <param name="damage">The amount of damage to apply.</param>
         public void TakeDamage(int damage)
         {
             _currentHealthPoint -= damage;
@@ -62,10 +68,13 @@ namespace MilitaryGame.Building
             
             if (!IsAlive())
             {
+                MilitaryGameEventLib.Instance.CloseInformationPanel?.Invoke();
                 GridBuildingSystem.Instance.ClearPlacedBuilding(this);
             }
         }
-
+        
+        #endregion
+        
         #region CLICK METHODS
 
         public void OnLeftClick()
@@ -117,8 +126,7 @@ namespace MilitaryGame.Building
 
             Initialize();
         }
-
-
+        
         #endregion
     }
 }

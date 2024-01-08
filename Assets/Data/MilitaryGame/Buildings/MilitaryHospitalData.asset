@@ -12,16 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4d33b14d10dc043ae83db5dbc3073a, type: 3}
   m_Name: MilitaryHospitalData
   m_EditorClassIdentifier: 
-  Name: MilitaryHospital
+  Name: Military Hospital
   Type: 3
   IsProductive: 0
   Icon: {fileID: 21300000, guid: 2a3aca3106951644181682381bfc858a, type: 3}
   HealthPoint: 60
   Prefab: {fileID: 3002486212381821510, guid: e494b6a8df220a6488645f58b9e716a2, type: 3}
-  InfoString: 'An armory is a facility for storing or manufacturing military equipment.
-    It generally refers to a storage place for weapons and supplies.It enhances contributing
-    to a more effective defense and providing strategic variety in gameplay.
-
-
-    Defense:
-    80 health points.'
+  InfoString: A military hospital is a medical facility specifically dedicated to
+    providing healthcare services to members of the armed forces, including soldiers
+    and other military personnel.

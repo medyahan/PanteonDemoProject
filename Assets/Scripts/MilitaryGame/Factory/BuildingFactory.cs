@@ -11,9 +11,8 @@ namespace MilitaryGame.Factory
         [Header("BUILDING COUNT")]
         [SerializeField] private int _buildingCount;
 
-        private List<BuildingData> _buildingDataList = new List<BuildingData>();
-
-        private Dictionary<BuildingType, ObjectPool<BaseBuilding>> _buildingPoolList = new Dictionary<BuildingType, ObjectPool<BaseBuilding>>();
+        private List<BuildingData> _buildingDataList = new();
+        private Dictionary<BuildingType, ObjectPool<BaseBuilding>> _buildingPoolList = new();
 
         public void Initialize(List<BuildingData> buildingDataList)
         {

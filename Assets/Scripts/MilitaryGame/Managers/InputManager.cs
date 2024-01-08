@@ -1,4 +1,4 @@
-using Interfaces.MilitaryGame;
+using Interface;
 using UnityEngine;
 
 namespace MilitaryGame.Managers

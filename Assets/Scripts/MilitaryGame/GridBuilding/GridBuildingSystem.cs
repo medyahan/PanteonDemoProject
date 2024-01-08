@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Data.MilitaryGame;
 using MilitaryGame.Building;
@@ -34,8 +32,6 @@ namespace MilitaryGame.GridBuilding
 
         public GridLayout GridLayout => _gridLayout;
         public Tilemap MainTilemap => _mainTilemap;
-
-        public TileBase RedTileBase => _redTileBase;
         public BaseBuilding TempBaseBuilding => _tempBaseBuilding;
     
         #endregion // Variable Fields
@@ -69,8 +65,7 @@ namespace MilitaryGame.GridBuilding
                 // Move the temporary building to the current cell position.
                 if (_prevBuildingPos != cellpos)
                 {
-                    _tempBaseBuilding.transform.localPosition =
-                        _gridLayout.CellToLocalInterpolated(cellpos);
+                    _tempBaseBuilding.transform.localPosition = _gridLayout.CellToLocalInterpolated(cellpos);
 
                     _prevBuildingPos = cellpos; 
                     FollowBuilding();
@@ -239,6 +234,10 @@ namespace MilitaryGame.GridBuilding
             _tempBaseBuilding = null;
         }
         
+        /// <summary>
+        /// Clears a placed building from the game grid, ends its functionality, and destroys it.
+        /// </summary>
+        /// <param name="placedBuilding">The placed building to clear.</param>
         public void ClearPlacedBuilding(BaseBuilding placedBuilding)
         {
             placedBuilding.End();
@@ -274,7 +273,6 @@ namespace MilitaryGame.GridBuilding
         public void InitializeWithBuilding(BuildingData.BuildingType buildingType)
         {
             _tempBaseBuilding = BuildingFactory.Instance.CreateBuilding(buildingType, Vector3.zero, Quaternion.identity);
-        
             FollowBuilding();   
         }
         

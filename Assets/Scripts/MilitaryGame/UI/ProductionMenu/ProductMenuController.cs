@@ -13,10 +13,10 @@ namespace MilitaryGame.UI.ProductionMenu
         [SerializeField] private BuildingSlotButton _buildingSlotButtonPref;
         [SerializeField] private Transform _contentParent;
 
-        private List<BuildingSlotButton> _buildingSlotButtonList = new List<BuildingSlotButton>();
+        private List<BuildingSlotButton> _buildingSlotButtonList = new();
         private bool _isMenuOpen;
 
-        private List<BuildingData> _buildingDataList = new List<BuildingData>();
+        private List<BuildingData> _buildingDataList = new();
         
         #endregion // Variable Fields
     
@@ -25,13 +25,13 @@ namespace MilitaryGame.UI.ProductionMenu
             base.Initialize(list);
 
             _buildingDataList = (List<BuildingData>) list[0];
-            CreateProductSlotButtons();
+            CreateBuildingSlotButtons();
         }
     
         /// <summary>
         /// Creates and initializes product slot buttons for each building in the building data list.
         /// </summary>
-        private void CreateProductSlotButtons()
+        private void CreateBuildingSlotButtons()
         {
             for (int i = 0; i < _buildingDataList.Count; i++)
             {
@@ -43,10 +43,8 @@ namespace MilitaryGame.UI.ProductionMenu
             }
         }
 
-        public override void End()
+        private void ClearAllBuildingSlotButton()
         {
-            base.End();
-        
             foreach (BuildingSlotButton slotButton in _buildingSlotButtonList)
             {
                 if(slotButton == null) return;
@@ -55,6 +53,12 @@ namespace MilitaryGame.UI.ProductionMenu
                 Destroy(slotButton.gameObject);
             }
             _buildingSlotButtonList.Clear();
+        }
+
+        public override void End()
+        {
+            base.End();
+            ClearAllBuildingSlotButton();
         }
     }
 }

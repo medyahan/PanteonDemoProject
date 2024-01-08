@@ -50,16 +50,12 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 9ef89610fa640b64ab380acacd6a85a8, type: 3}
   - {fileID: 21300000, guid: fb8c4a40072d376429f27e934da4ca4c, type: 3}
-  - {fileID: 21300000, guid: 02bdc5f95c308574ca91dc31018fe75d, type: 3}
   - {fileID: 21300000, guid: bc2f46eb0838b8043a66165e8a4f717d, type: 3}
   - {fileID: 21300000, guid: 4deb1a0c7896b524bb5f60ab868ea71e, type: 3}
   - {fileID: 21300000, guid: 79cb2fae0353f21478f820027500560c, type: 3}
   m_PackedSpriteNamesToIndex:
-  - ui_panel_bg_white
   - ui_frame_12px
-  - ui_panel_bg_black
   - ui_frame_4px
   - ui_square
   - ui_frame_edge

@@ -245,7 +245,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &124323048
 GameObject:
@@ -4647,9 +4647,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4791,7 +4791,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &416324973
 GameObject:
@@ -4982,7 +4982,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &536919643
 GameObject:
@@ -5079,7 +5079,7 @@ RectTransform:
   - {fileID: 229402691}
   - {fileID: 1205011262}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5489,7 +5489,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 416324975}
   m_HandleRect: {fileID: 416324974}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7985,7 +7985,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1101608392
 GameObject:
@@ -8292,7 +8292,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1157499722
 GameObject:
@@ -8438,10 +8438,6 @@ MonoBehaviour:
   _buildingInfoText: {fileID: 627453823}
   _soldierSlotPrefab: {fileID: 371468546483911322, guid: 49d533311d8d9dd419deb16470747d22, type: 3}
   _productionContentParent: {fileID: 2057609051}
-  _soldierDataList:
-  - {fileID: 11400000, guid: 46015bf24df50af4bb53f5e6834f5e1a, type: 2}
-  - {fileID: 11400000, guid: f32d2cda0fa3bf24e9c0f78e14344af8, type: 2}
-  - {fileID: 11400000, guid: 7422e5db25bcfad469b305e420ddbe70, type: 2}
 --- !u!1 &1263867146
 GameObject:
   m_ObjectHideFlags: 0
@@ -9058,8 +9054,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ef89610fa640b64ab380acacd6a85a8, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 4deb1a0c7896b524bb5f60ab868ea71e, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9128,15 +9124,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 02bdc5f95c308574ca91dc31018fe75d, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 4deb1a0c7896b524bb5f60ab868ea71e, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

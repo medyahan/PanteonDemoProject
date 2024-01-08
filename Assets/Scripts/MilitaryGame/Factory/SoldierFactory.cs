@@ -10,9 +10,8 @@ namespace MilitaryGame.Factory
         [Header("SOLDIER COUNT")]
         [SerializeField] private int _soldierCount;
 
-        private List<SoldierData> _soldierDataList = new List<SoldierData>();
-
-        private Dictionary<SoldierType, ObjectPool<Soldier.Soldier>> _soldierPoolList = new Dictionary<SoldierData.SoldierType, ObjectPool<Soldier.Soldier>>();
+        private List<SoldierData> _soldierDataList = new();
+        private Dictionary<SoldierType, ObjectPool<Soldier.Soldier>> _soldierPoolList = new();
 
         public void Initialize(List<SoldierData> soldierDataList)
         {

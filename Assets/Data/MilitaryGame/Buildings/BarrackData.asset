@@ -18,7 +18,6 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: f45be43d91f95f245b7149c482129af5, type: 3}
   HealthPoint: 100
   Prefab: {fileID: 1572204150046591004, guid: 346c987d530e52548b8288d250f794b5, type: 3}
-  InfoString: "The primary function of the Barracks is to facilitate the production
+  InfoString: The primary function of the Barracks is to facilitate the production
     of military units. It acts as a training ground where soldiers are recruited,
-    equipped, and prepared for deployment in your strategic endeavors.\n\nDefense:
-    100 health points.\r"
+    equipped, and prepared for deployment in your strategic endeavors.

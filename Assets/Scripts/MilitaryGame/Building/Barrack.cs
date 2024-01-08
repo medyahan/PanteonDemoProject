@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MilitaryGame.Factory;
+﻿using MilitaryGame.Factory;
 using MilitaryGame.GridBuilding;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -13,15 +12,14 @@ namespace MilitaryGame.Building
         [SerializeField] private Transform _soldierSpawnPoint;
 
         /// <summary>
-        /// Produces a soldier of the specified type, places it at the designated spawn point,
-        /// initializes it, and adds it to the list of active soldiers.
+        /// Produces a soldier of the specified type, placing it at the designated spawn point.
         /// </summary>
-        /// <param name="soldierType">Type of the soldier to produce.</param>
+        /// <param name="soldierType">The type of soldier to produce.</param>
         public void ProduceSoldier(SoldierType soldierType)
         {
             Soldier.Soldier soldier = SoldierFactory.Instance.CreateSoldier(soldierType, Vector3.zero, Quaternion.identity);
-            Tilemap mainTilemap = GridBuildingSystem.Instance.MainTilemap;
-            Vector3Int soldierSpawnPos = mainTilemap.WorldToCell(_soldierSpawnPoint.position);
+     
+            Vector3Int soldierSpawnPos = GridBuildingSystem.Instance.MainTilemap.WorldToCell(_soldierSpawnPoint.position);
             soldier.transform.position = soldierSpawnPos;
             soldier.Initialize();
         }

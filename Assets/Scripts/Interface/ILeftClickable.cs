@@ -1,4 +1,4 @@
-namespace Interfaces.MilitaryGame
+namespace Interface
 {
     public interface ILeftClickable
     {

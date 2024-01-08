@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Core;
 using Data.MilitaryGame;
 using MilitaryGame.Building;
@@ -25,8 +26,8 @@ public class InformationPanelController : BaseMonoBehaviour
     [Header("SOLDIER SLOT")]
     [SerializeField] private SoldierSlot _soldierSlotPrefab;
     [SerializeField] private Transform _productionContentParent;
-    [SerializeField] private List<SoldierData> _soldierDataList = new List<SoldierData>();
-    
+   
+    private List<SoldierData> _soldierDataList = new List<SoldierData>();
     private List<SoldierSlot> _soldierSlotList = new List<SoldierSlot>();
     private BaseBuilding _tempBaseBuilding;
 
@@ -36,6 +37,7 @@ public class InformationPanelController : BaseMonoBehaviour
     {
         base.Initialize(list);
         
+        _soldierDataList = (List<SoldierData>) list[0];
         Close();
     }
 
@@ -46,7 +48,8 @@ public class InformationPanelController : BaseMonoBehaviour
     
     public void Close()
     {
-        _mainPanel.SetActive(false);
+        if(_mainPanel.activeSelf)
+            _mainPanel.SetActive(false);
     }
 
     #region SHOWING INFO METHODS
@@ -64,11 +67,17 @@ public class InformationPanelController : BaseMonoBehaviour
 
         _tempBaseBuilding = baseBuilding;
 
-        _buildingIconImage.sprite = baseBuilding.BuildingData.Icon;
-        _buildingInfoText.text = baseBuilding.BuildingData.InfoString;
-        _buildingNameText.text = baseBuilding.BuildingData.Name;
+        _buildingNameText.text = _tempBaseBuilding.BuildingData.Name;
+        _buildingIconImage.sprite = _tempBaseBuilding.BuildingData.Icon;
+
+        // Build information string
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.Append(_tempBaseBuilding.BuildingData.InfoString);
+        stringBuilder.Append($"\n\nDEFENCE: {_tempBaseBuilding.BuildingData.HealthPoint} Health Points");
+        _buildingInfoText.text = stringBuilder.ToString();
         
-        CheckProductive(baseBuilding.BuildingData.IsProductive);
+        // Check if the building is productive and update the UI accordingly
+        CheckProductive(_tempBaseBuilding.BuildingData.IsProductive);
     }
 
     /// <summary>

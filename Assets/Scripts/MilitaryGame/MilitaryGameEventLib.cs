@@ -1,5 +1,5 @@
 using System;
-using Interfaces.MilitaryGame;
+using Interface;
 using MilitaryGame.Building;
 
 namespace MilitaryGame
@@ -10,6 +10,8 @@ namespace MilitaryGame
         public Action CloseInformationPanel;
         public Action<IDamageable> SetDamageableObject;
         public Func<IDamageable> GetCurrentDamageableObject;
+        public Action<Soldier.Soldier> AddSelectedSoldier;
+        public Action<Soldier.Soldier> RemoveSelectedSoldier;
 
         protected override void Awake()
         {
@@ -23,6 +25,8 @@ namespace MilitaryGame
             CloseInformationPanel = null;
             SetDamageableObject = null;
             GetCurrentDamageableObject = null;
+            AddSelectedSoldier = null;
+            RemoveSelectedSoldier = null;
         }
     }
 }

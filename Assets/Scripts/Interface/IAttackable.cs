@@ -1,7 +1,4 @@
-using MilitaryGame.Building;
-using UnityEngine;
-
-namespace Interfaces.MilitaryGame
+namespace Interface
 {
     public interface IAttackable
     {

@@ -11,6 +11,8 @@ namespace MilitaryGame.UI.InformationPanel
     {
         [SerializeField] private Button _produceButton;
         [SerializeField] private Image _soldierIconImage;
+        
+        [Header("TEXTS")]
         [SerializeField] private TMP_Text _soldierNameText;
         [SerializeField] private TMP_Text _soldierInfoText;
 
